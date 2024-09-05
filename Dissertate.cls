@@ -211,6 +211,7 @@
     filecolor=black,
     linkcolor=black,
     urlcolor=black,
+    %pdftitle={\myTitle},
 }
 
 
@@ -292,7 +293,7 @@
 	  % \@coadvisorOne
    \hfill \@studentId \\
 	  %\@coadvisorTwo \\
-	  \@coadvisorsUniversity \\
+	  %\@coadvisorsUniversity \\
 	\vspace{30pt}
 	\centering
 	\large{\textit{Academic Year} \\ \@academicYear}
@@ -372,3 +373,4 @@
 }
 
 \newcommand{\addtoglossary}{\textsubscript{\textit{G}} }
+\newcommand{\myTitle}{SMKIT: Design and development of a social media kit}
