@@ -21,9 +21,36 @@ Each of these areas will be explored in detail in the subsequent sections of thi
 
 The following sections will build upon this introductory overview, examining each of the mentioned aspects in greater detail to provide a complete picture of the technical and conceptual approaches adopted in the development of SMKIT.
 
+
 \section{System Design and Architecture}
 \label{sec:system_design_architecture}
-This section explains the design decisions made for SMKIT, including the system architecture, components, and how they interact.
+This section explains the design decisions made for the Social Media Kit (SMKIT), including the overall system architecture, the key components that make up the system, and how these components interact to achieve the desired functionality. The system is designed to automate the generation and sharing of content on social media platforms, leveraging data from websites that integrate Open Graph (OG) tags or from the Negapedia website through a dedicated module for contextual analysis and content creation.
+
+The architecture of SMKIT is based on a modular and scalable approach, allowing for flexibility in future development. Below are the key aspects of the system design:
+
+\begin{itemize}
+    \item \textbf{Modular Architecture}: The system is built using a modular architecture, where each component or unit has a specific responsibility. This allows for easy maintenance and the potential for future upgrades. The key components include:
+    \begin{itemize}
+        \item \textbf{Data Extraction Component}: Responsible for extracting data from external sources, such as websites with Open Graph (OG) tags or Negapedia specific data through web scraping.
+        \item \textbf{Data Transformation Component}: Handles data cleaning, transformation, and analysis, converting raw data into structured and usable formats.
+        \item \textbf{Content Creation Component}: Uses the processed data to automatically generate content for social media posts, including text and multimedia.
+        \item \textbf{Social Media Posting Component}: Manages the process of posting content, previously extracted into structured and usable formats, to various social media platforms (e.g., Twitter, Facebook) through the use of APIs.
+    \end{itemize}
+    
+    
+    \item \textbf{Scalability}: SMKIT is designed with scalability in mind. The system can handle multiple social media platforms and expand to include additional sources of data and content generation features. By using a modular structure, new components can be added without disrupting existing functionality.
+    
+    \item \textbf{Data Flow}: The data flow in SMKIT is sequential and structured. The process begins with the extraction of data from external sources, followed by cleaning and transformation, content generation, and finally, posting to social media platforms. \begin{comment} The following diagram illustrates the flow of data through the system:
+    
+    \begin{figure}[ht]
+        \centering
+        \includegraphics[width=0.8\textwidth]{figures/methodology/methodology_chapter_data_flow_diagramm_drawio_v2.png}
+        \caption{System Architecture and Data Flow}
+        \label{fig:system_architecture}
+    \end{figure}
+    \end{comment} 
+    
+\end{itemize}
 
 \subsection{System Architecture Overview}
 \label{subsec:system_architecture_overview}
