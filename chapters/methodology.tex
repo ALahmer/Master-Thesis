@@ -78,7 +78,22 @@ The diagram above illustrates how these components are structured and interact w
 
 \subsection{Technological Stack}
 \label{subsec:technological_stack}
-Describe the technologies and tools used to implement SMKIT, including any frameworks or programming languages like Python, Flask, or others.
+The SMKIT project employs a variety of technologies and tools to ensure efficient and effective implementation of its components. The system's design relies primarily on \textit{Python}, a versatile programming language, which serves as the backbone for the development of all key modules. Below is a detailed description of the key technologies used in the project:
+
+\begin{itemize}
+    \item \textbf{Python}: \textit{Python} was selected as the primary programming language due to its ease of use, extensive library support, and suitability for web scraping, data manipulation, and automation tasks. The SMKIT system is built entirely in Python, utilizing its powerful libraries for a variety of tasks, from data extraction to content generation and posting.
+    
+    \item \textbf{argparse}: For managing command-line interfaces, the project uses the \textit{argparse} module. This module simplifies the process of handling command-line arguments, enabling users to interact with the system via terminal commands for various operations permitted by SMKIT.
+
+    \item \textbf{BeautifulSoup}: \textit{BeautifulSoup} is used for web scraping tasks, specifically for extracting metadata and content from external websites. It simplifies the process of navigating HTML structures and retrieving relevant data from web pages.
+
+    \item \textbf{matplotlib}: For visualizing data, the \textit{matplotlib} library is employed to generate plots and diagrams. This is particularly useful for representing the anger and conflict-based metrics derived from data.
+    
+    \item \textbf{facebook-sdk} and \textbf{tweepy}: These libraries are used to integrate the system with social media platforms like Facebook and Twitter, respectively. The \textit{facebook-sdk} allows for smooth interaction with the Facebook API for posting content, while \textit{tweepy} is used to manage content on Twitter. These libraries are integral in automating the process of sharing content on social media platforms, as discussed in Chapter 2.
+
+\end{itemize}
+
+Each of these technologies plays a vital role in the implementation of SMKIT, ensuring that the system operates efficiently, allowing for smooth data processing, content creation, and automation. The choice of Python, along with its extensive ecosystem of libraries, provides the flexibility needed to handle the diverse tasks within the system.
 
 \subsection{Module Development for Negapedia Integration}
 \label{subsec:module_development_negapedia}
