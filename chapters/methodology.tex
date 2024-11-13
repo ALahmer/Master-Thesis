@@ -115,19 +115,36 @@ In summary, the integration of the Negapedia module within SMKIT is designed to 
 
 \section{Data Collection and Preparation}
 \label{sec:data_collection_preparation}
-This section describes how data is gathered, processed, and prepared for use in the SMKIT system.
+This section describes how data is gathered, processed, and prepared for use in the SMKIT system. The process involves extracting raw data from web pages using web scraping tools, cleaning the data to ensure quality and relevance, and transforming it into a structured format that can be easily used for content generation and social media posting.
 
 \subsection{Web Scraping Tools and Techniques}
 \label{subsec:web_scraping_tools_techniques}
-Discuss the web scraping tools and techniques employed, such as BeautifulSoup or Scrapy, and how they were used to extract data from web pages.
+The primary web scraping tool used in SMKIT is \textbf{BeautifulSoup}, a Python library that facilitates the easy extraction of data from static HTML web pages. BeautifulSoup was chosen for its simplicity and effectiveness in handling static content, which is all that SMKIT requires, as the system does not need to handle JavaScript-rendered content.
+The tool is used to parse the HTML content of web pages, extracting relevant data such as text, links, images, and metadata, and structuring it for further processing. BeautifulSoup works efficiently with both the generic module and the Negapedia module, as both modules rely on static HTML pages that can be parsed directly, without requiring complex JavaScript handling.
+This approach is well-suited for the needs of SMKIT, as it allows for the extraction of critical data points like page titles, descriptions, and specific metrics for Negapedia (such as conflict or polemic awards), which are then processed into structured formats.
 
 \subsection{Data Cleaning}
 \label{subsec:data_cleaning}
-Explain the methods used to clean and process the raw data, including handling missing values, removing duplicates, and correcting errors.
+After the raw data is collected from web scraping, it undergoes a cleaning process to ensure that it is accurate, relevant, and in a usable format for further processing. The cleaning process varies slightly between the generic module and the Negapedia module, based on the type of data being handled.
+
+\begin{itemize}
+    \item \textbf{Generic Module Cleaning}: In the case of the generic module, the data is parsed and structured using metadata tags such as \texttt{og:title}, \texttt{og:description}, \texttt{og:image}, etc., along with any fallback values (e.g., page title or URL) if these tags are missing. While no direct filtering is applied, the content is organized into a \texttt{PageInfo} structure for consistent processing and usage.
+    
+    \item \textbf{Negapedia Module Cleaning}: For the Negapedia module, data cleaning is more complex. A helper function, \texttt{filter\_data()}, is used to filter the data based on several criteria, such as the type of data (e.g., conflict or polemic), the category of the content (e.g., "all" or specific categories), and the period of the content. The filter ensures that only the most relevant data is selected for further processing, excluding irrelevant or outdated entries.
+\end{itemize}
+
+The data cleaning process ensures that only high-quality, relevant data is used in the system, avoiding the inclusion of outdated or irrelevant content.
 
 \subsection{Data Transformation}
 \label{subsec:data_transformation}
-Describe the process of transforming raw data into a usable format for the system, such as converting text into structured data or normalizing values.
+Once the raw data is cleaned, it is transformed into a structured format that can be easily used by SMKIT for content creation and social media posting. This process involves converting unstructured or semi-structured data into well-defined data types, which can be processed by the system’s components.
+
+\begin{itemize}
+    \item \textbf{Generic Module Transformation}: For the generic module, the cleaned data is converted into the \texttt{PageInfo} data type, which is a \texttt{TypedDict} in Python. The \texttt{PageInfo} structure includes fields such as \texttt{title}, \texttt{description}, \texttt{message}, \texttt{images}, \texttt{urls}, and \texttt{updated\_time}, among others. This structured format allows for easy access and manipulation of the data within the system.
+    \item \textbf{Negapedia Module Transformation}: For the Negapedia module, the cleaned data is transformed into the \texttt{NegapediaPageInfo} data type, another \texttt{TypedDict} in Python. The \texttt{NegapediaPageInfo} structure is more complex, as it includes additional fields specific to Negapedia, such as \texttt{historical\_conflict}, \texttt{historical\_polemic} along with \texttt{social\_jumps} and \texttt{words\_that\_matter}, among others. These fields capture detailed metrics and visual representations of conflict, polemic, and social interactions, making the data more specific to the Negapedia context.
+\end{itemize}
+
+In summary, the data collection, cleaning, and transformation process in SMKIT is designed to ensure that the system operates with high-quality, structured data that is ready for use in content generation. By utilizing web scraping, applying filtering techniques for data cleaning, and transforming the data into structured formats like \texttt{PageInfo} and \texttt{NegapediaPageInfo}, SMKIT is able to automate the creation of social media content that is both relevant and contextually appropriate.
 
 \section{Implementation}
 \label{sec:implementation}
