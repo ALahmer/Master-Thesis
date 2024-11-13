@@ -97,7 +97,21 @@ Each of these technologies plays a vital role in the implementation of SMKIT, en
 
 \subsection{Module Development for Negapedia Integration}
 \label{subsec:module_development_negapedia}
-Explain the development of the specific module created to integrate data from Negapedia, highlighting any key challenges or innovations.
+The integration of Negapedia data into the Social Media Kit (SMKIT) system is handled by a dedicated module, developed to enable the extraction, processing, and posting of content related to Negapedia articles. This integration follows a modular approach, allowing the system to load and interact with different data sources based on user input.
+
+\begin{itemize}
+    \item \textbf{Module Loading and Argument Management}: In SMKIT, the entry point is controlled via the command-line interface, using the \texttt{argparse} module to manage input parameters. A key parameter is \texttt{--module}, which specifies which data source module to load (e.g., \texttt{negapedia}). The system uses the \texttt{load\_module} function to dynamically load the appropriate module, ensuring flexibility and extensibility for future data sources.
+    
+    \item \textbf{Negapedia-Specific Input Validation}: When the \texttt{negapedia} module is selected, the system expects several mandatory input parameters, including \texttt{--pages}, \texttt{--post\_type}, \texttt{--mode}, and \texttt{--language}. These parameters are validated within the \texttt{handle\_module()} function of the Negapedia module. The function also includes checks specific to different posting modes, such as \texttt{summary}, \texttt{comparison}, and \texttt{ranking}, ensuring that the correct number of pages and ranking fields are provided before proceeding.
+
+    \item \textbf{Data Extraction and Transformation}: Once the necessary parameters are validated, the Negapedia module extracts data from Negapedia pages, processing the content into a structured format, specifically a Python \texttt{TypedDict} called \texttt{NegapediaPageInfo}. This structure ensures that key information, such as words, conflict awards, polemic awards, and social jumps, is extracted and organized in a way that aligns with the system’s requirements. The amount of data to extract can be customized based on user input. The data transformation process then ensures that the raw Negapedia data, encapsulated in the \texttt{NegapediaPageInfo} dictionary, is usable for content creation and social media posting.
+    
+    \item \textbf{Post Settings and Customization}: The Negapedia module also allows customization of the posts to be generated. This includes setting the language, defining custom messages, and selecting the social media platforms (e.g., Twitter, Facebook) where the content will be posted. The settings are passed from the command-line arguments to the module, ensuring that each post aligns with user preferences.
+
+    \item \textbf{Post Settings and Customization}: The Negapedia module also allows customization of the posts to be generated. This includes setting the language and eventually defining custom messages. For each language, a specific template is used, which is particularly tailored for the Negapedia module. These templates are designed to handle and display specific data, such as conflict awards, polemic awards, and social jumps, ensuring that the content is presented in a contextually relevant way for the target audience. The settings are passed from the command-line arguments to the module, ensuring that each post aligns with user preferences and the unique structure of the Negapedia content.
+\end{itemize}
+
+In summary, the integration of the Negapedia module within SMKIT is designed to be flexible, allowing the system to process and post content from Negapedia based on user-defined parameters. The module's dynamic loading system, combined with robust input validation and data transformation capabilities, ensures that the system can effectively generate relevant and customized social media content.
 
 \section{Data Collection and Preparation}
 \label{sec:data_collection_preparation}
