@@ -29,13 +29,13 @@ This section explains the design decisions made for the Social Media Kit (SMKIT)
 The architecture of SMKIT is based on a modular and scalable approach, allowing for flexibility in future development. Below are the key aspects of the system design:
 
 \begin{itemize}
-    \item \textbf{Modular Architecture}: The system is built using a modular architecture, where each component or unit has a specific responsibility. This allows for easy maintenance and the potential for future upgrades. The key components include:
+    \item \textbf{Modular Architecture}: The system is built using a modular architecture, where each component or unit has a specific responsibility. This allows for easy maintenance and the potential for future upgrades. \begin{comment} The key components include:
     \begin{itemize}
         \item \textbf{Data Extraction Component}: Responsible for extracting data from external sources, such as websites with Open Graph (OG) tags or Negapedia specific data through web scraping.
         \item \textbf{Data Transformation Component}: Handles data cleaning, transformation, and analysis, converting raw data into structured and usable formats.
         \item \textbf{Content Creation Component}: Uses the processed data to automatically generate content for social media posts, including text and multimedia.
         \item \textbf{Social Media Posting Component}: Manages the process of posting content, previously extracted into structured and usable formats, to various social media platforms (e.g., Twitter, Facebook) through the use of APIs.
-    \end{itemize}
+    \end{itemize} \end{comment}
     
     
     \item \textbf{Scalability}: SMKIT is designed with scalability in mind. The system can handle multiple social media platforms and expand to include additional sources of data and content generation features. By using a modular structure, new components can be added without disrupting existing functionality.
@@ -44,17 +44,37 @@ The architecture of SMKIT is based on a modular and scalable approach, allowing 
     
     \begin{figure}[ht]
         \centering
-        \includegraphics[width=0.8\textwidth]{figures/methodology/methodology_chapter_data_flow_diagramm_drawio_v2.png}
+        \includegraphics[width=0.8\textwidth]{figures/methodology/placeholder_image.png}
         \caption{System Architecture and Data Flow}
         \label{fig:system_architecture}
-    \end{figure}
-    \end{comment} 
-    
+    \end{figure} \end{comment}
+
 \end{itemize}
 
 \subsection{System Architecture Overview}
 \label{subsec:system_architecture_overview}
-Provide a high-level overview of the system architecture, including diagrams that illustrate how different components of SMKIT interact.
+The system architecture of the Social Media Kit (SMKIT) is designed with a modular approach to ensure scalability, flexibility, and ease of maintenance. The architecture integrates several key components that work together to automate the extraction, processing, generation, and sharing of content on social media platforms. Below is an overview of how these components interact:
+
+\begin{itemize}
+    \item \textbf{Data Extraction Component}: The system begins by extracting raw data from external sources. This data extraction process can be achieved through web scraping, which provide the foundational content for further processing.
+
+    \item \textbf{Data Transformation Component}: Once the raw data is collected, it is passed on to the data transformation component. This component is responsible for cleaning, structuring, and transforming the raw data into a usable format. It processes unstructured text to extract key insights, removes irrelevant or noisy data, and organizes the content into predefined formats.
+    
+    \item \textbf{Social Media Posting Component}: Finally, the transformed content is sent to the social media posting component. This component manages the process of sharing the content across various platforms like Twitter and Facebook, utilizing platform-specific APIs to ensure seamless posting.
+\end{itemize}
+
+The modularity of the architecture allows for flexibility in extending the system to include new data sources with eventually new tailored predefined formats, additional social media platforms, or advanced content generation techniques, such as sentiment analysis and machine learning-based content optimization.
+
+\begin{comment}
+\begin{figure}[ht]
+    \centering
+    \includegraphics[width=0.8\textwidth]{figures/methodology/placeholder_image.png}
+    \caption{SMKIT System Architecture Overview}
+    \label{fig:system_architecture_overview}
+\end{figure}
+
+The diagram above illustrates how these components are structured and interact with one another to create a streamlined system for automating content generation and distribution.
+\end{comment}
 
 \subsection{Technological Stack}
 \label{subsec:technological_stack}
