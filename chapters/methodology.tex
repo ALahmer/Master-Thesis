@@ -146,21 +146,6 @@ Once the raw data is cleaned, it is transformed into a structured format that ca
 
 In summary, the data collection, cleaning, and transformation process in SMKIT is designed to ensure that the system operates with high-quality, structured data that is ready for use in content generation. By utilizing web scraping, applying filtering techniques for data cleaning, and transforming the data into structured formats like \texttt{PageInfo} and \texttt{NegapediaPageInfo}, SMKIT is able to automate the creation of social media content that is both relevant and contextually appropriate.
 
-\section{Implementation}
-\label{sec:implementation}
-This section details the implementation of SMKIT, including the development of key modules and the integration of components.
-
-\subsection{Module for Content Automation}
-\label{subsec:module_for_content_automation}
-Explain how the module for content automation was developed, including the algorithms or logic used to generate posts or content for social media platforms.
-
-\subsection{Integration with Negapedia}
-\label{subsec:integration_with_negapedia}
-Describe how Negapedia’s data is integrated into the SMKIT system, focusing on the specific integration methods or APIs used.
-
-\subsection{Social Media Platform Integration}
-\label{subsec:social_media_integration}
-Discuss the methods used to integrate SMKIT with social media platforms (e.g., Twitter, Facebook, Instagram) for automatic content sharing.
 
 \section{Challenges and Limitations}
 \label{sec:challenges_limitations}
@@ -168,11 +153,31 @@ This section discusses any technical, logistical, or methodological challenges e
 
 \subsection{Technical Challenges}
 \label{subsec:technical_challenges}
-Describe the technical difficulties faced during development, such as integrating with social media APIs or dealing with large-scale data extraction.
+During the development of SMKIT, several technical challenges came up. These challenges were addressed with varying degrees of success, and some remain ongoing considerations for future improvements. One of the most significant technical difficulties encountered was related to integrating with social media APIs. The following points summarize the challenges related to social media API integration:
+
+\textbf{Social Media API Integration:} Integrating with social media APIs such as Twitter and Facebook posed several difficulties. These difficulties derived from the complexities of working with third-party APIs and ensuring smooth interaction between SMKIT and the social media platforms. Key challenges included:
+
+\begin{itemize}
+    \item \textbf{Rate Limits:} Both Twitter and Facebook impose strict rate limits on API calls, restricting the number of requests that can be made within a given time frame. For example, Twitter limits the number of tweets that can be posted or retrieved within an hour, and Facebook places limits on the number of API requests for posting content or retrieving user data. These rate limits occasionally disrupted the real-time processing of data and timely posting of content, particularly on Twitter, where the restrictions are more stringent. It's important to note that while these rates are generally sufficient for typical usage of SMKIT, during development and testing, the rate limits on Twitter were occasionally reached.
+
+    \item \textbf{Authentication Issues:} Handling OAuth authentication for accessing social media accounts was another challenge. Both Twitter and Facebook require OAuth 2.0 for user authentication, which involves obtaining access tokens that must be securely managed. Specifically, SMKIT had to deal with the complexities of managing long-lived tokens and refreshing expired tokens to maintain a continuous connection to the social media accounts. All possible authentication scenarios were covered by following the official documentation and implementing the necessary checks for token expiration, renewal, and error handling. In cases of token expiration or other authentication issues, SMKIT logs all relevant details, ensuring that the system can handle these situations appropriately. Although token expiration occasionally led to failures in posting or retrieving data, the system is designed to recover gracefully. Future improvements could include more robust token management systems.
+
+    \item \textbf{Platform-Specific Restrictions and Features:} Each social media platform has its own unique set of features, restrictions, and guidelines for posting content. For example, Twitter limits the length of tweets and the number of images that can be attached, while Facebook has specific image and video size requirements for posts. SMKIT had to account for these platform-specific limitations when generating posts, ensuring that content was formatted correctly for each platform. This involved sometimes adapting data retrieval from the common structured format and other times working with platform-specific templates.
+
+\end{itemize}
 
 \subsection{Limitations of SMKIT}
 \label{subsec:limitations_of_smkit}
-Explain the limitations of the SMKIT system, including any features or capabilities that are yet to be implemented or limitations in performance.
+Despite its capabilities, SMKIT has several limitations that need to be addressed in future versions of the tool. The following points outline the key limitations:
+
+\begin{itemize}
+    \item \textbf{Limited Social Media Platform Support:} Currently, SMKIT only supports posting on Facebook and Twitter. Other social media platforms such as Instagram, LinkedIn, or more specialized platforms are not yet supported.
+    
+    \item \textbf{Limited Metadata Extraction:} Although SMKIT extracts key Open Graph and HTML meta tags, it currently does not support a large range of metadata types or advanced features like full-page scraping (e.g., handling JavaScript-rendered content).
+    
+    \item \textbf{Lack of Real-Time Content Monitoring:} Currently, SMKIT does not provide real-time monitoring for changes on websites, such as Negapedia or any other website that uses Open Graph tags. Users must manually initiate the tool to check for new content or posts. Future versions could include automated monitoring and alerts.
+\end{itemize}
+
 
 \section{Conclusion}
 \label{sec:methodology_conclusion}
