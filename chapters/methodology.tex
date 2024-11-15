@@ -7,7 +7,7 @@ This chapter sets the foundation for understanding the practical implementation 
 
 
 \section{Introduction}
-\label{sec:introduction}
+\label{sec:methodology_introduction}
 This section introduces the methodology used for developing the Social Media Kit (SMKIT). It provides an overview of the key techniques and tools employed throughout the development process, providing the foundation for the work presented in this thesis. The methodology chapter serves as a detailed explanation of how the objectives of SMKIT were achieved, with a focus on the following key areas:
 
 \begin{itemize}
@@ -23,7 +23,7 @@ The following sections will build upon this introductory overview, examining eac
 
 
 \section{System Design and Architecture}
-\label{sec:system_design_architecture}
+\label{sec:system_design_and_architecture}
 This section explains the design decisions made for the Social Media Kit (SMKIT), including the overall system architecture, the key components that make up the system, and how these components interact to achieve the desired functionality. The system is designed to automate the generation and sharing of content on social media platforms, leveraging data from websites that integrate Open Graph (OG) tags or from the Negapedia website through a dedicated module for contextual analysis and content creation.
 
 The architecture of SMKIT is based on a modular and scalable approach, allowing for flexibility in future development. Below are the key aspects of the system design:
@@ -96,7 +96,7 @@ The SMKIT project employs a variety of technologies and tools to ensure efficien
 Each of these technologies plays a vital role in the implementation of SMKIT, ensuring that the system operates efficiently, allowing for smooth data processing, content creation, and automation. The choice of Python, along with its extensive ecosystem of libraries, provides the flexibility needed to handle the diverse tasks within the system.
 
 \subsection{Module Development for Negapedia Integration}
-\label{subsec:module_development_negapedia}
+\label{subsec:module_development_for_negapedia_integration}
 The integration of Negapedia data into the Social Media Kit (SMKIT) system is handled by a dedicated module, developed to enable the extraction, processing, and posting of content related to Negapedia articles. This integration follows a modular approach, allowing the system to load and interact with different data sources based on user input.
 
 \begin{itemize}
@@ -114,11 +114,11 @@ The integration of Negapedia data into the Social Media Kit (SMKIT) system is ha
 In summary, the integration of the Negapedia module within SMKIT is designed to be flexible, allowing the system to process and post content from Negapedia based on user-defined parameters. The module's dynamic loading system, combined with robust input validation and data transformation capabilities, ensures that the system can effectively generate relevant and customized social media content.
 
 \section{Data Collection and Preparation}
-\label{sec:data_collection_preparation}
+\label{sec:data_collection_and_preparation}
 This section describes how data is gathered, processed, and prepared for use in the SMKIT system. The process involves extracting raw data from web pages using web scraping tools, cleaning the data to ensure quality and relevance, and transforming it into a structured format that can be easily used for content generation and social media posting.
 
 \subsection{Web Scraping Tools and Techniques}
-\label{subsec:web_scraping_tools_techniques}
+\label{subsec:web_scraping_tools_and_techniques}
 The primary web scraping tool used in SMKIT is \textbf{BeautifulSoup}, a Python library that facilitates the easy extraction of data from static HTML web pages. BeautifulSoup was chosen for its simplicity and effectiveness in handling static content, which is all that SMKIT requires, as the system does not need to handle JavaScript-rendered content.
 The tool is used to parse the HTML content of web pages, extracting relevant data such as text, links, images, and metadata, and structuring it for further processing. BeautifulSoup works efficiently with both the generic module and the Negapedia module, as both modules rely on static HTML pages that can be parsed directly, without requiring complex JavaScript handling.
 This approach is well-suited for the needs of SMKIT, as it allows for the extraction of critical data points like page titles, descriptions, and specific metrics for Negapedia (such as conflict or polemic awards), which are then processed into structured formats.
@@ -148,7 +148,7 @@ In summary, the data collection, cleaning, and transformation process in SMKIT i
 
 
 \section{Challenges and Limitations}
-\label{sec:challenges_limitations}
+\label{sec:challenges_and_limitations}
 This section discusses any technical, logistical, or methodological challenges encountered during the project, as well as the limitations of SMKIT.
 
 \subsection{Technical Challenges}

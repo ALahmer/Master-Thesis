@@ -2,5 +2,117 @@
 
 \chapter{Implementation}
 \label{chp:implementation}
+This chapter describes the implementation of the Social Media Kit (SMKIT) project. It provides a detailed explanation of how the system was constructed, focusing on key modules, components, and their integration. The chapter builds upon the methodology discussed previously and delves into the practical realization of SMKIT.
 
-Implementation.
+\section{Introduction}
+\label{sec:implementation_introduction}
+In this section, we introduce the purpose of the implementation chapter and briefly explain the goals of the \textbf{SMKIT} project. We discuss the key components and how they were implemented to automate the process of generating and sharing content across social media platforms.
+
+\section{System Architecture Overview}
+\label{sec:system_architecture_overview}
+This section provides a detailed overview of the system architecture. It explains the modular design of \textbf{SMKIT} and how the various components interact with each other to achieve the desired functionality. The section also includes a diagram (if available) illustrating the system architecture and the data flow through \textbf{SMKIT}.
+
+\begin{itemize}
+    \item \textbf{Modular Architecture}: Explain the overall modular approach, where each component has a specific role. The modular structure allows for easy extension and maintenance.
+    \item \textbf{Data Flow}: Describe the flow of data within the system, starting from data extraction, followed by processing, transformation, content generation, and finally posting to social media platforms.
+\end{itemize}
+
+\section{Entry Point and Command-Line Interface (CLI)}
+\label{sec:entry_point_and_command_line_interface_cli}
+This section describes the main entry point of \textbf{SMKIT}, the \texttt{smkit.py} script. It explains how \textbf{argparse} is used to manage command-line arguments and how the system operates based on user input.
+
+\subsection{SMKIT Entry Point (\texttt{smkit.py})}
+\label{subsec:smkit_entry_point_smkit_py}
+The \texttt{smkit.py} script serves as the main entry point for \textbf{SMKIT}. This section explains the role of \textbf{argparse} in managing command-line arguments and how different options (e.g., \texttt{--module}, \texttt{--pages}, \texttt{--post\_type}, \texttt{--language}) determine the behavior of the system.
+
+\subsection{Workflow Overview}
+\label{subsec:workflow_overview}
+This subsection provides a step-by-step overview of how \textbf{SMKIT} is used, from command-line input to content posting. It explains the flow of data through the system and how different modules work together to create and share content on social media platforms.
+
+\section{Schema Management and Data Handling}
+\label{sec:schema_management_and_data_handling}
+This section discusses the various schemas used in \textbf{SMKIT} to manage and structure the data. The \texttt{PageInfo} and \texttt{NegapediaPageInfo} schemas play a key role in transforming raw data into usable content for social media posts.
+
+\subsection{PageInfo Schema}
+\label{subsec:pageinfo_schema}
+The \texttt{PageInfo schema} is used for handling metadata from general websites, including fields such as title, description, and image URLs. This section describes the structure of the schema and its use in organizing data for social media posts.
+
+\subsection{NegapediaPageInfo Schema}
+\label{subsec:negapediapageinfo_schema}
+The \texttt{NegapediaPageInfo schema} is used specifically for processing data from the Negapedia website. This schema contains additional fields tailored to Negapedia content, such as conflict and polemic awards, social jumps, and words that matter.
+
+\section{Core Modules Implementation}
+\label{sec:core_modules_implementation}
+This section breaks down the implementation of the core modules in \textbf{SMKIT}. Each module is discussed in detail, including its responsibilities and how it contributes to the overall functionality of the system.
+
+\subsection{Base Module}
+\label{subsec:base_module}
+The \textbf{Base Module} provides common functionality shared across all other modules in \textbf{SMKIT}. It includes initialization logic, error handling, logging, and other utilities necessary for the operation of the system.
+
+\subsection{Generic Module}
+\label{subsec:generic_module}
+The \textbf{Generic Module} is responsible for processing web pages and extracting metadata (e.g., using \textbf{Open Graph} tags). This module can work with any website that implements \textbf{Open Graph} tags or similar structured data formats. It handles data extraction, transformation, and posting to social media platforms.
+
+\subsection{Negapedia Module}
+\label{subsec:negapedia_module}
+The \textbf{Negapedia Module} is designed specifically to handle data from Negapedia. This section explains how the \texttt{NegapediaPageInfo} schema is used to structure and process Negapedia-specific data (e.g., conflict, polemic, social interaction metrics). The module processes this data and formats it for social media posting.
+
+\section{Social Media Integration}
+\label{sec:social_media_integration}
+This section covers the integration with social media platforms like \textbf{Facebook} and \textbf{Twitter}. It explains how \textbf{SMKIT} interacts with their APIs to automate posting content.
+
+\subsection{Facebook Connector}
+\label{subsec:facebook_connector}
+The \textbf{Facebook Connector} integrates \textbf{SMKIT} with Facebook’s Graph API to allow for seamless posting of content. This section covers the OAuth authentication process, rate limiting issues, and how posts are created and formatted to comply with Facebook's requirements.
+
+\subsection{Twitter Connector}
+\label{subsec:twitter_connector}
+The \textbf{Twitter Connector} uses \texttt{Tweepy} to interact with the Twitter API, allowing for posting tweets. This section discusses the integration process, handling rate limits, and adapting content for Twitter's specific formatting requirements (e.g., tweet length, image attachments).
+
+\subsection{Unified Social Media Posting}
+\label{subsec:unified_social_media_posting}
+This subsection explains how \textbf{SMKIT} can post content to multiple social media platforms (e.g., \textbf{Facebook} and \textbf{Twitter}) in a unified manner. It also discusses how the system abstracts the social media platform differences, making it easy to add future platforms.
+
+\section{Template Management and Customization}
+\label{sec:template_management_and_customization}
+Templates are an essential part of \textbf{SMKIT}, as they allow for dynamic content generation across different social media platforms. This section explains how templates are managed and how \textbf{SMKIT} customizes them based on user input.
+
+\subsection{Template Overview}
+\label{subsec:template_overview}
+In this subsection, describe the role of templates in \textbf{SMKIT}. Explain how different templates are used for \textbf{Facebook}, \textbf{Twitter}, and web posts, and how the system chooses the appropriate template for each scenario.
+
+\subsection{Template Customization and Data Insertion}
+\label{subsec:template_customization_and_data_insertion}
+This section explains how \textbf{SMKIT} dynamically populates templates with data (e.g., post titles, descriptions). It discusses how content from the \texttt{PageInfo} and \texttt{NegapediaPageInfo} schemas is inserted into the templates for social media posts.
+
+\section{Utility Functions and Support Modules}
+\label{sec:utility_functions_and_support_modules}
+\textbf{SMKIT} relies on several utility functions and support modules to handle tasks like input validation, environment configuration, and logging. This section outlines the implementation of these supporting modules.
+
+\subsection{Environment Management}
+\label{subsec:Environment_management}
+The \textbf{env\_management} module handles configuration settings, such as API keys and environment variables. This section discusses how the system securely manages sensitive information and loads configuration settings from environment files (e.g., \texttt{env.json}).
+
+\subsection{Input Validation Management}
+\label{subsec:input_validation_management}
+This module ensures that user inputs (e.g., URLs, post types) are validated before being processed. It checks for required fields and formats, ensuring that only valid input is passed to the system.
+
+\subsection{Image Management}
+\label{subsec:image_management}
+This section explains the \textbf{image\_management} module, which handles image retrieval, resizing, and preparation for posting. It ensures that images are correctly formatted according to the requirements of each social media platform.
+
+\subsection{Logger Management}
+\label{subsec:logger_management}
+The \textbf{logger\_management} module ensures that \textbf{SMKIT} logs relevant system activities, including data extraction, errors, and performance metrics. This section explains how logging is integrated into the system for troubleshooting and monitoring.
+
+\subsection{Plot Colors Management}
+\label{subsec:plot_colors_management}
+This utility manages color schemes used in visualizations, such as graphs representing conflict or social metrics. It ensures consistent and customizable color usage across the system.
+
+\subsection{Translation Management}
+\label{subsec:translation_management}
+This section explains the \textbf{translation\_management} module, which handles language-specific templates and messages. It enables \textbf{SMKIT} to generate posts in multiple languages based on user input.
+
+\section{Conclusion}
+\label{sec:implementation_conclusion}
+This section summarizes the key aspects of the \textbf{SMKIT} implementation, reflecting on the design choices and technical challenges. It provides a transition to the next chapter, which will discuss the \textbf{Results} of using \textbf{SMKIT} in real-world scenarios.
