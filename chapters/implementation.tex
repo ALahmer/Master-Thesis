@@ -2,11 +2,30 @@
 
 \chapter{Implementation}
 \label{chp:implementation}
-This chapter describes the implementation of the Social Media Kit (SMKIT) project. It provides a detailed explanation of how the system was constructed, focusing on key modules, components, and their integration. The chapter builds upon the methodology discussed previously and delves into the practical realization of SMKIT.
+This chapter describes the practical realization of the Social Media Kit (\textbf{SMKIT}) project. It provides a detailed explanation of how the system was constructed, focusing on its key modules, components, and their integration to automate content generation and sharing across multiple platforms. 
+
+The chapter begins with an overview of the system architecture, highlighting the modular design and data flow through the system. Subsequently, it dig into the specifics of the core modules, schema management, template customization, social media integration, and the utility functions supporting the system's operations. Additionally, the chapter discusses the possible interaction through the command-line interface (\textbf{CLI}), which enables the use of \textbf{SMKIT}. Furthermore, the implementation of the Web Connector for generating HTML web pages is also examined.
+
+Building on the methodology outlined in the previous chapter, this chapter bridges the theoretical framework with the technical implementation, providing a comprehensive view of how \textbf{SMKIT} was developed to achieve its goals.
+
 
 \section{Introduction}
 \label{sec:implementation_introduction}
-In this section, we introduce the purpose of the implementation chapter and briefly explain the goals of the \textbf{SMKIT} project. We discuss the key components and how they were implemented to automate the process of generating and sharing content across social media platforms.
+The implementation chapter examine the technical realization of the \textbf{Social Media Kit (SMKIT)} project, outlining how the system's design was transformed into a functional software tool. The goal of \textbf{SMKIT} is to facilitate the generation and sharing of engaging content across various social media platforms, ensuring consistency, efficiency, and adaptability.
+
+This section provides an overview of the implementation approach, focusing on the integration of key components that enable \textbf{SMKIT} to meet its objectives. Key areas of emphasis include:
+
+\begin{itemize}
+    \item \textbf{System Architecture}: Highlighting the modular design that aid the integration of diverse functionalities.
+    \item \textbf{Core Components}: Explaining the implementation of the foundational modules—\textbf{Base Module}, \textbf{Generic Module}, and \textbf{Negapedia Module}—which are integral to the system's operation.
+    \item \textbf{Interaction Mechanisms}: Discussing the command-line interface (\textbf{CLI}) as the primary method of user interaction with the system.
+    \item \textbf{Web Connector Integration}: Detailing the implementation of the Web Connector to generate HTML web pages, expanding the reach of the content beyond social media platforms.
+    \item \textbf{Social Media Integration}: Addressing how \textbf{SMKIT} interfaces with platforms like \textbf{Facebook} and \textbf{Twitter} to automate content posting.
+    \item \textbf{Utility Modules}: Examining auxiliary functionalities, such as logging, input validation, image processing, and translation management, that support the system's core operations.
+\end{itemize}
+
+By systematically detailing these components, this chapter bridges the gap between the conceptual design discussed in the \textbf{Methodology} chapter and the practical application of \textbf{SMKIT}. It provides the reader with a comprehensive understanding of the technical foundation of the project.
+
 
 \section{System Architecture Overview}
 \label{sec:system_architecture_overview}
