@@ -29,12 +29,73 @@ By systematically detailing these components, this chapter bridges the gap betwe
 
 \section{System Architecture Overview}
 \label{sec:system_architecture_overview}
-This section provides a detailed overview of the system architecture. It explains the modular design of \textbf{SMKIT} and how the various components interact with each other to achieve the desired functionality. The section also includes a diagram (if available) illustrating the system architecture and the data flow through \textbf{SMKIT}.
+This section provides a comprehensive overview of the system architecture of \textbf{SMKIT}. It looks into the modular design principles adopted during development and explains how the various components interact to achieve seamless functionality. The section emphasizes the modular approach, which enhances the scalability, maintainability, and adaptability of the system. Additionally, the data flow within the system is detailed to illustrate the end-to-end process of content creation and sharing. A diagram depicting the system architecture and data flow is included to provide visual clarity.
+
+\subsection{Modular Architecture}
+\label{subsec:modular_architecture}
+The architecture of \textbf{SMKIT} is built on a modular design principle, where each component is implemented as an independent module with a specific responsibility. This design enables the system to be easily extended and maintained. The core modules of \textbf{SMKIT} include:
 
 \begin{itemize}
-    \item \textbf{Modular Architecture}: Explain the overall modular approach, where each component has a specific role. The modular structure allows for easy extension and maintenance.
-    \item \textbf{Data Flow}: Describe the flow of data within the system, starting from data extraction, followed by processing, transformation, content generation, and finally posting to social media platforms.
+    \item \textbf{Base Module}: Provides the foundational structure for the system. It serves as an abstract base class, defining common methods and properties, such as:
+        \begin{itemize}
+            \item Abstract methods for subclass-specific implementations:
+                \begin{itemize}
+                    \item \texttt{handle\_module()}
+                    \item \texttt{process\_pages()}
+                    \item \texttt{extract\_pages\_info()}
+                \end{itemize}
+            \item Static method implemented in-class:
+                \begin{itemize}
+                    \item \texttt{fetch\_page\_content()}
+                \end{itemize}
+            \item Shared utilities, including a global color manager for plotting data visualization.
+            \item Generating posts through connectors (Facebook, Twitter, Web) using the method \texttt{generate\_posts()}.
+        \end{itemize}
+
+    \item \textbf{Generic Module}: Processes data from general websites with structured metadata (e.g., Open Graph tags). Its features include:
+        \begin{itemize}
+            \item Implements \texttt{process\_pages()} to validate input, fetch page content, and extract metadata into the \texttt{PageInfo} schema.
+            \item Supports only the \texttt{summary} mode, processing one page at a time.
+        \end{itemize}
+
+    \item \textbf{Negapedia Module}: Specializes in processing Negapedia content, providing:
+        \begin{itemize}
+            \item Support for multiple modes: \texttt{summary}, \texttt{comparison}, and \texttt{ranking}.
+            \item Customizable settings for extraction, such as the number of conflict awards, polemic awards, or social jumps to include.
+            \item Extraction of specialized metrics into the \texttt{NegapediaPageInfo} schema, including conflict/polemic awards and historical metrics.
+        \end{itemize}
+
+    \item \textbf{Web Connector}: Generates HTML pages with the same content shared on social media, ensuring consistency across platforms.
+    \item \textbf{Social Media Connectors}: Integrates with platforms such as \textbf{Facebook} and \textbf{Twitter} for automated posting.
 \end{itemize}
+
+\subsection{Data Flow}
+\label{subsec:data_flow}
+The data flow within \textbf{SMKIT} begins with data extraction from either a general website or a specialized source like Negapedia. The extracted data undergoes several stages of processing, transformation, and structuring before it is used for content generation. The process can be summarized as follows:
+
+\begin{enumerate}
+    \item \textbf{Data Validation}: Input parameters, such as URLs, modes, and language settings, are validated to ensure they conform to the requirements of the selected module (\textbf{Generic Module} or \textbf{Negapedia Module}). This step ensures that invalid or incomplete input does not disrupt the workflow.
+    \item \textbf{Data Extraction}: Based on the input, data is fetched from the source using the appropriate module. The \textbf{Generic Module} extracts metadata from general websites (e.g., \textbf{Open Graph} tags), while the \textbf{Negapedia Module} retrieves structured data specific to Negapedia.
+    \item \textbf{Data Transformation}: Extracted data is organized into predefined schemas, such as \texttt{PageInfo} for general websites and \texttt{NegapediaPageInfo} for Negapedia-specific content. This step ensures that all information is consistently formatted and ready for content generation.
+    \item \textbf{Content Generation}: Processed data is dynamically inserted into predefined templates. These templates are customized for different types of output, including social media posts and web pages. This ensures that the generated content aligns with the intended platform's requirements and presentation style.
+    \item \textbf{Content Distribution}: The formatted content is either:
+    \begin{itemize}
+        \item Posted to social media platforms, such as \textbf{Facebook} and \textbf{Twitter}, via the \textbf{Social Media Connectors}.
+        \item Used to generate static HTML web pages via the \textbf{Web Connector}, providing a consistent and shareable representation of the content on the web.
+    \end{itemize}
+\end{enumerate}
+
+Each stage is designed to ensure data integrity, consistency, and adaptability, meeting the specific requirements of the supported platforms. The consistent integration of components in this workflow highlights the versatility and efficiency of the \textbf{SMKIT} system.
+
+\subsection{System Architecture Diagram}
+\label{subsec:system_architecture_diagram}
+A system architecture diagram is included here to visually represent the relationships between components, the modular structure and the data flow. The diagram illustrate how data is extracted, processed, and shared, providing a clear understanding of the system's operation.
+\begin{figure}[ht]
+        \centering
+        \includegraphics[width=0.8\textwidth]{figures/implementation/placeholder_image.png}
+        \caption{System Architecture and Data Flow}
+        \label{fig:implementation_system_architecture_and_data_flow}
+    \end{figure}
 
 \section{Entry Point and Command-Line Interface (CLI)}
 \label{sec:entry_point_and_command_line_interface_cli}
