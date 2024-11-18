@@ -97,17 +97,77 @@ A system architecture diagram is included here to visually represent the relatio
         \label{fig:implementation_system_architecture_and_data_flow}
     \end{figure}
 
+
 \section{Entry Point and Command-Line Interface (CLI)}
 \label{sec:entry_point_and_command_line_interface_cli}
-This section describes the main entry point of \textbf{SMKIT}, the \texttt{smkit.py} script. It explains how \textbf{argparse} is used to manage command-line arguments and how the system operates based on user input.
 
-\subsection{SMKIT Entry Point (\texttt{smkit.py})}
-\label{subsec:smkit_entry_point_smkit_py}
-The \texttt{smkit.py} script serves as the main entry point for \textbf{SMKIT}. This section explains the role of \textbf{argparse} in managing command-line arguments and how different options (e.g., \texttt{--module}, \texttt{--pages}, \texttt{--post\_type}, \texttt{--language}) determine the behavior of the system.
+This section describes the main entry point of \textbf{SMKIT}, the \texttt{smkit.py} script, and explains how the system leverages the command-line interface (\textbf{CLI}) to allow users to interact with the tool. The \textbf{CLI} serves as a flexible and efficient means of configuring and executing the system, enabling users to customize operations by specifying input parameters and settings. The \textbf{argparse} library in Python is used to handle command-line arguments, providing a robust mechanism for user input management.
 
-\subsection{Workflow Overview}
-\label{subsec:workflow_overview}
-This subsection provides a step-by-step overview of how \textbf{SMKIT} is used, from command-line input to content posting. It explains the flow of data through the system and how different modules work together to create and share content on social media platforms.
+The \texttt{smkit.py} script is the primary entry point for executing \textbf{SMKIT}. It integrates with \textbf{argparse} to define and manage the required and optional arguments that control the behavior of the system. These arguments allow users to specify which module to use, what content to process, and how the output should be generated and distributed.
+
+Key command-line arguments include:
+
+\begin{itemize}
+    \item \texttt{--module} (\textit{optional}): Specifies the module to be executed. Supported options include:
+    \begin{itemize}
+        \item \texttt{generic}: Executes the \textbf{Generic Module} for processing general websites with metadata such as \textbf{Open Graph} tags.
+        \item \texttt{negapedia}: Executes the \textbf{Negapedia Module} to process content from Negapedia.
+    \end{itemize}
+    If not specified, the \textbf{Generic Module} is used by default.
+
+    \item \texttt{--pages} (\textit{mandatory}): A list of page URLs or file paths to be processed. This parameter must be specified for \textbf{SMKIT} to operate. For example:
+    \begin{itemize}
+        \item \texttt{https://example.com}: Specifies a general website URL for the \textbf{Generic Module}.
+        \item \texttt{articles/Donald\_Trump.html}: Specifies a local file path for a Negapedia article to be processed by the \textbf{Negapedia Module}.
+    \end{itemize}
+
+    \item \texttt{--mode} (\textit{mandatory}): Specifies the mode of operation for the selected module. Supported modes include:
+    \begin{itemize}
+        \item \texttt{summary}: Generates a summary for a single page.
+        \item \texttt{comparison}: Compares two pages (specific to the \textbf{Negapedia Module}).
+        \item \texttt{ranking}: Generates a ranking on selected metrics for pages under analysis (specific to the \textbf{Negapedia Module}).
+    \end{itemize}
+
+    \item \texttt{--post\_type} (\textit{mandatory}): Specifies the type of output to generate. Supported options include:
+    \begin{itemize}
+        \item \texttt{facebook}: Creates posts for \textbf{Facebook}.
+        \item \texttt{twitter}: Creates tweets for \textbf{Twitter}.
+        \item \texttt{web}: Generates HTML web pages using the \textbf{Web Connector}.
+    \end{itemize}
+    Multiple options can be selected simultaneously.
+
+    \item \texttt{--message} (\textit{optional}): Provides a custom message for the generated posts. This overrides the default system-generated message.
+
+    \item \texttt{--language} (\textit{optional}, default: \texttt{en}): Specifies the language for the post. Supported options include \texttt{en} (English) and \texttt{it} (Italian).
+
+    \item \texttt{--minimum\_article\_modified\_date} (\textit{optional}): Filters pages based on the last modification date. Pages modified earlier than the specified date (format: \texttt{YYYY-MM-DD}) are ignored.
+
+    \item \texttt{--base\_directory} (\textit{optional}): Specifies the filesystem base directory for local processing. Useful for mapping local files to web URLs.
+
+    \item \texttt{--base\_url} (\textit{optional}): Specifies the base URL of the website for mapping local file paths to accessible web URLs.
+
+    \item \texttt{--remove\_suffix} (\textit{optional}): A flag that, when set, removes \texttt{.html} or \texttt{.htm} suffixes from given paths in \texttt{--pages} parameter values.
+
+    \item \texttt{--number\_of\_words\_that\_matter\_to\_extract} (\textit{optional}): Specifies the number of important words that matter to extract from Negapedia pages.
+
+    \item \texttt{--number\_of\_conflict\_awards\_to\_extract} (\textit{optional}): Specifies the number of conflict awards to extract from Negapedia pages.
+
+    \item \texttt{--number\_of\_polemic\_awards\_to\_extract} (\textit{optional}): Specifies the number of polemic awards to extract from Negapedia pages.
+
+    \item \texttt{--number\_of\_social\_jumps\_to\_extract} (\textit{optional}): Specifies the number of social jumps to extract from Negapedia pages.
+
+    \item \texttt{--ranking\_fields} (\textit{optional}): Specifies the fields to be used for ranking in \texttt{ranking} mode. Supported options include:
+    \begin{itemize}
+        \item \texttt{recent\_conflict\_levels}
+        \item \texttt{recent\_polemic\_levels}
+        \item \texttt{mean\_conflict\_level}
+        \item \texttt{mean\_polemic\_level}
+    \end{itemize}
+    If not specified, all ranking fields are used by default.
+
+\end{itemize}
+
+These arguments provide a high degree of flexibility, allowing users to tailor the execution of \textbf{SMKIT} to their specific requirements.
 
 \section{Schema Management and Data Handling}
 \label{sec:schema_management_and_data_handling}
