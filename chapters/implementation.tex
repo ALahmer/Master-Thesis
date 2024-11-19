@@ -379,23 +379,60 @@ class NegapediaModule(BaseModule):
 
 \section{Social Media Integration}
 \label{sec:social_media_integration}
-This section covers the integration with social media platforms like \textbf{Facebook} and \textbf{Twitter}. It explains how \textbf{SMKIT} interacts with their APIs to automate posting content and how the Web Connector module allows for the sharing of content via web pages.
+This section details the integration of \textbf{SMKIT} with popular social media platforms such as \textbf{Facebook} and \textbf{Twitter}, along with content sharing via \textbf{HTML web pages}. The system automates content distribution by interfacing with APIs and dynamically generating formatted posts.
 
 \subsection{Facebook Connector}
 \label{subsec:facebook_connector}
-The \textbf{Facebook Connector} integrates \textbf{SMKIT} with Facebook’s Graph API to allow for seamless posting of content. This section covers the OAuth authentication process, rate limiting issues, and how posts are created and formatted to comply with Facebook's requirements.
+The \textbf{Facebook Connector} integrates \textbf{SMKIT} with the \textbf{Facebook Graph API} for smooth content posting. The main features include:
+
+\begin{itemize}
+    \item \textbf{OAuth Authentication:} The system authenticates using \textbf{long-lived page access tokens}. When tokens are expired or missing, it automatically refreshes them through a secure OAuth flow.
+    \item \textbf{Content Posting:} Posts are created by loading and customizing templates. Dynamic elements such as titles, descriptions, and images are populated using data from the \texttt{post\_info} structure.
+    \item \textbf{Media Upload:} Images are uploaded to Facebook servers before associating them with posts. Both web-hosted and local images are supported.
+    \item \textbf{Error Handling:} Robust mechanisms handle token expiration, API errors, and missing data, ensuring the system gracefully responds to failures.
+\end{itemize}
+
+The connector supports Facebook-specific formatting requirements and leverages modular functions to process Negapedia data dynamically for \textbf{summary}, \textbf{comparison}, and \textbf{ranking} templates.
 
 \subsection{Twitter Connector}
 \label{subsec:twitter_connector}
-The \textbf{Twitter Connector} uses \texttt{Tweepy} to interact with the Twitter API, allowing for posting tweets. This section discusses the integration process, handling rate limits, and adapting content for Twitter's specific formatting requirements (e.g., tweet length, image attachments).
+The \textbf{Twitter Connector} integrates \textbf{SMKIT} with the \textbf{Twitter API} using the \texttt{Tweepy} library. Key capabilities include:
+
+\begin{itemize}
+    \item \textbf{OAuth Authentication:} The connector uses access tokens and secret keys for API authentication.
+    \item \textbf{Tweet Composition:} Dynamic tweets are generated from templates, with placeholders replaced by specific content such as titles, summaries, and URLs.
+    \item \textbf{Media Attachments:} Images are uploaded via Twitter's media API and attached to tweets. The system handles local and web-hosted images with appropriate formatting.
+    \item \textbf{Error Handling:} Exceptions during API calls, such as rate-limit violations, are logged to ensure traceability.
+\end{itemize}
+
+The connector also adapts content to Twitter-specific requirements such as character limits and media attachment constraints.
 
 \subsection{Unified Social Media Posting}
 \label{subsec:unified_social_media_posting}
-This subsection explains how \textbf{SMKIT} can post content to multiple social media platforms (e.g., \textbf{Facebook} and \textbf{Twitter}) in a unified manner. It also discusses how the system abstracts the social media platform differences, making it easy to add future platforms.
+The \textbf{SMKIT} framework abstracts platform-specific differences, enabling unified content posting across multiple social media channels. The system employs a modular architecture, with connectors for \textbf{Facebook}, \textbf{Twitter}, and additional platforms that can be seamlessly integrated. Key aspects include:
 
-\subsection{Web Connector and Content Sharing via Web Pages}
-\label{subsec:web_connector_content_sharing}
-In addition to posting on social media platforms, \textbf{SMKIT} can generate HTML web pages containing the same content shared on social media. This allows users to share content through a URL, providing an additional method of content distribution.
+\begin{itemize}
+    \item \textbf{Dynamic Routing:} Posts are routed to the appropriate connector based on the specified platform(s).
+    \item \textbf{Template Standardization:} Templates are designed to support multiple formats, ensuring consistency across platforms.
+    \item \textbf{Scalability:} The architecture supports the addition of new social media platforms with minimal effort by extending the connector framework.
+\end{itemize}
+
+\subsection{Web Connector}
+\label{subsec:web_connector}
+In addition to social media platforms, \textbf{SMKIT} supports content sharing through \textbf{HTML web pages}. The \textbf{Web Connector} generates and formats standalone web pages based on predefined templates. Key features include:
+
+\begin{itemize}
+    \item \textbf{Dynamic HTML Generation:} Templates are populated with content from the \texttt{PageInfo} / \texttt{NegapediaPageInfo} structure, including titles, descriptions, images, and links.
+    \item \textbf{File Management:} Web pages are saved as standalone HTML files in a user-defined directory.
+    \item \textbf{Cross-Platform Compatibility:} HTML pages are designed to be compatible across various devices and browsers, ensuring accessibility.
+\end{itemize}
+
+This functionality provides an alternative method of content distribution by enabling users to share URL links to the generated web pages. Additionally, users can host the generated HTML files on their own servers, integrating them as part of their website. These pages can be treated as regular web pages, added to the website's sitemap, and made available for search engine indexing.
+
+\subsection{Error Handling and Reliability}
+\label{subsec:error_handling_reliability}
+All connectors implement logging and basic error-handling mechanisms to address common issues such as authentication failures, expired tokens, and missing data. The Facebook Connector includes a fallback mechanism for refreshing tokens, while other connectors rely on logging and error reporting. Handling of API rate limits and graceful degradation is limited, emphasizing the need for further enhancements to ensure robust integration across all supported platforms.
+
 
 \section{Template Management and Customization}
 \label{sec:template_management_and_customization}
