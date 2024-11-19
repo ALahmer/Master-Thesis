@@ -483,31 +483,65 @@ This functionality enhances the versatility of \textbf{SMKIT}, enabling content 
 
 \section{Utility Functions and Support Modules}
 \label{sec:utility_functions_and_support_modules}
-\textbf{SMKIT} relies on several utility functions and support modules to handle tasks like input validation, environment configuration, and logging. This section outlines the implementation of these supporting modules.
+\textbf{SMKIT} relies on various utility functions and support modules to handle tasks such as input validation, environment configuration, image processing, and logging. These modules are designed to simplify operations, ensure robustness, and facilitate customization.
 
 \subsection{Environment Management}
 \label{subsec:Environment_management}
-The \textbf{env\_management} module handles configuration settings, such as API keys and environment variables. This section discusses how the system securely manages sensitive information and loads configuration settings from environment files (e.g., \texttt{env.json}).
+The \textbf{env\_management} module is responsible for securely managing configuration settings, such as API keys, file paths, and other environment variables. This module ensures that sensitive information is loaded from and stored in an environment file (e.g., \texttt{env.json}). Key features include:
+\begin{itemize}
+    \item \textbf{Secure Storage}: Configuration data is stored in a JSON file.
+    \item \textbf{Dynamic Loading}: The \texttt{load\_from\_env} function reads and parses the environment file into memory, allowing modules to access configuration settings seamlessly.
+    \item \textbf{Error Handling}: The system gracefully handles missing or corrupted environment files, logging errors to the users.
+    \item \textbf{Data Persistence}: The \texttt{save\_to\_env} function updates the environment file with new or modified settings.
+\end{itemize}
 
 \subsection{Input Validation Management}
 \label{subsec:input_validation_management}
-This module ensures that user inputs (e.g., URLs, post types) are validated before being processed. It checks for required fields and formats, ensuring that only valid input is passed to the system.
+The \textbf{input\_validation\_management} module ensures that user-provided inputs are valid before processing. It verifies input formats, checks for missing fields, and validates URLs or file paths. Key capabilities include:
+\begin{itemize}
+    \item \textbf{URL Validation}: Identifies and processes valid URLs, distinguishing them from local file paths.
+    \item \textbf{File Path Mapping}: Converts local file paths to web-accessible URLs by mapping them based on configured base directories and URLs.
+    \item \textbf{Directory Traversal}: Scans directories for files to process, ensuring only supported formats (e.g., HTML, compressed files) are considered.
+    \item \textbf{Error Handling}: Invalid inputs trigger detailed error messages and logging, ensuring issues are promptly addressed.
+\end{itemize}
 
 \subsection{Image Management}
 \label{subsec:image_management}
-This section explains the \textbf{image\_management} module, which handles image retrieval, resizing, and preparation for posting. It ensures that images are correctly formatted according to the requirements of each social media platform.
+The \textbf{image\_management} module handles image retrieval and preparation for posting on social media platforms. It ensures images comply with platform-specific requirements. The module’s functionalities include:
+\begin{itemize}
+    \item \textbf{Image Downloading}: Fetches images from provided URLs using the \texttt{fetch\_image\_as\_stream} function.
+    \item \textbf{Format Adaptation}: Adjusts images formats for compatibility with platform constraints.
+    \item \textbf{Temporary Storage}: Saves processed images in a designated directory for easy retrieval and posting.
+\end{itemize}
 
 \subsection{Logger Management}
 \label{subsec:logger_management}
-The \textbf{logger\_management} module ensures that \textbf{SMKIT} logs relevant system activities, including data extraction, errors, and performance metrics. This section explains how logging is integrated into the system for troubleshooting and monitoring.
+The \textbf{logger\_management} module ensures detailed logging of system activities, including successful operations, warnings, and errors. This facilitates troubleshooting and monitoring. Key aspects include:
+\begin{itemize}
+    \item \textbf{Custom Logging Format}: Uses a colored formatter for easy differentiation of log levels.
+    \item \textbf{Debugging Support}: Provides verbose logs during development to assist in identifying issues.
+    \item \textbf{Error Tracking}: Logs errors with detailed context to help pinpoint root causes.
+\end{itemize}
 
 \subsection{Plot Colors Management}
 \label{subsec:plot_colors_management}
-This utility manages color schemes used in visualizations, such as graphs representing conflict or social metrics. It ensures consistent and customizable color usage across the system.
+The \textbf{plot\_colors\_management} module manages color schemes for visualizations, ensuring consistency and customization in graphs representing metrics like conflict or polemic levels. Features include:
+\begin{itemize}
+    \item \textbf{Predefined Color Palette}: A curated list of colors is used to ensure visual consistency across different plots.
+    \item \textbf{Dynamic Assignment}: Automatically assigns colors to topics, cycling through the palette or generating new colors if the palette is exhausted.
+    \item \textbf{Customization}: Users can modify the color palette to align with branding or specific visualization needs.
+\end{itemize}
 
 \subsection{Translation Management}
 \label{subsec:translation_management}
-This section explains the \textbf{translation\_management} module, which handles language-specific templates and messages. It enables \textbf{SMKIT} to generate posts in multiple languages based on user input.
+The \textbf{translation\_management} module enables multilingual support, allowing \textbf{SMKIT} to generate content in various languages based on user preferences. Its functionalities include:
+\begin{itemize}
+    \item \textbf{Language-Specific Templates}: Provides localized versions of templates for social media posts and web pages.
+    \item \textbf{Fallback Mechanisms}: Falls back to English translations if a specific language translation is unavailable, ensuring uninterrupted operations.
+    \item \textbf{Dynamic Placeholder Replacement}: Populates translation strings with dynamic data using placeholders, allowing flexible message customization.
+    \item \textbf{Error Handling}: Logs missing translations and warns users of potential content gaps.
+\end{itemize}
+
 
 \section{Conclusion}
 \label{sec:implementation_conclusion}
