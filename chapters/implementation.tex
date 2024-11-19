@@ -169,17 +169,109 @@ Key command-line arguments include:
 
 These arguments provide a high degree of flexibility, allowing users to tailor the execution of \textbf{SMKIT} to their specific requirements.
 
+
 \section{Schema Management and Data Handling}
 \label{sec:schema_management_and_data_handling}
-This section discusses the various schemas used in \textbf{SMKIT} to manage and structure the data. The \texttt{PageInfo} and \texttt{NegapediaPageInfo} schemas play a key role in transforming raw data into usable content for social media posts.
+This section discusses the schemas used in \textbf{SMKIT} to manage and structure the data effectively. The schemas are central to transforming raw input data into structured formats suitable for content generation and posting on various platforms. Key schemas include \texttt{PageInfo}, \texttt{NegapediaPageInfo}, and \texttt{ImageInfo}, each designed to handle specific aspects of data processing.
 
 \subsection{PageInfo Schema}
 \label{subsec:pageinfo_schema}
-The \texttt{PageInfo schema} is used for handling metadata from general websites, including fields such as title, description, and image URLs. This section describes the structure of the schema and its use in organizing data for social media posts.
+The \texttt{PageInfo} schema is used for processing general websites, particularly those with metadata such as \textbf{Open Graph} tags. It organizes metadata into a structured format, enabling efficient handling and reuse.
+
+\textbf{Key Fields in the \texttt{PageInfo} Schema:}
+\begin{itemize}
+    \item \textbf{title}: The title of the page, extracted from the \texttt{og:title} meta tag if available. If not, the HTML \texttt{<title>} tag is used, or the URL as a fallback.
+    \item \textbf{description}: A brief description of the page, extracted from the \texttt{og:description} meta tag or the \texttt{name="description"} meta tag as a fallback.
+    \item \textbf{message}: A custom message provided by the user as an input parameter. If no custom message is supplied, this field remains \texttt{None}.
+    \item \textbf{images}: A list containing information page images, this field will be filled by the primary image of the page, extracted from the \texttt{og:image} meta tag.
+    \item \textbf{audio} and \textbf{video}: Links to audio and video content on the page, extracted from the \texttt{og:audio} and \texttt{og:video} meta tags, respectively.
+    \item \textbf{urls}: The canonical URL of the page, extracted from the \texttt{og:url} meta tag. If unavailable, the input URL is used.
+    \item \textbf{updated\_time}: The timestamp of the last update to the page, extracted from the \texttt{og:updated\_time} meta tag.
+    \item \textbf{article\_published\_time} and \textbf{article\_modified\_time}: The publication and modification timestamps of the page, extracted from the \texttt{article:published\_time} together with \texttt{article:modified\_time} meta tags, respectively.
+    \item \textbf{article\_tag}: Tag categorizing the article, extracted from the \texttt{article:tag} meta tag.
+    \item \textbf{keywords}: Keywords describing the page, extracted from the \texttt{name="Keywords"} meta tag.
+\end{itemize}
+
+\textbf{Code Snippet:}
+\begin{lstlisting}[language=Python, caption={PageInfo Schema}, label={lst:pageinfo}]
+class PageInfo(TypedDict):
+    title: Optional[str]
+    description: Optional[str]
+    message: Optional[str]
+    images: List[ImageInfo]
+    audio: Optional[str]
+    video: Optional[str]
+    urls: List[Optional[str]]
+    updated_time: Optional[str]
+    article_published_time: Optional[str]
+    article_modified_time: Optional[str]
+    article_tag: Optional[str]
+    keywords: Optional[str]
+\end{lstlisting}
 
 \subsection{NegapediaPageInfo Schema}
 \label{subsec:negapediapageinfo_schema}
-The \texttt{NegapediaPageInfo schema} is used specifically for processing data from the Negapedia website. This schema contains additional fields tailored to Negapedia content, such as conflict and polemic awards, social jumps, and words that matter.
+The \texttt{NegapediaPageInfo} schema is specifically designed for processing content from Negapedia. It extends the functionality of \textbf{SMKIT} by incorporating fields that are unique to Negapedia’s data, such as conflict levels, polemic levels, awards, and social jumps.
+
+\textbf{Key Fields in the \texttt{NegapediaPageInfo} Schema:}
+\begin{itemize}
+    \item \textbf{title}: The title of the page, extracted from the \texttt{<title>} HTML element.
+    \item \textbf{description}: Currently not populated for Negapedia pages, set to \texttt{None}.
+    \item \textbf{message}: A user-provided custom message, if specified during execution.
+    \item \textbf{compact\_message}: A generated summary message combining conflict levels, polemic levels, awards, and social jumps.
+    \item \textbf{historical\_conflict} and \textbf{historical\_polemic}: Lists of images representing yearly historical conflict and polemic data, visualized as line plots.
+    \item \textbf{recent\_conflict\_levels} and \textbf{recent\_polemic\_levels}: Most recent conflict and polemic levels extracted from Negapedia's data.
+    \item \textbf{mean\_conflict\_level} and \textbf{mean\_polemic\_level}: Average conflict and polemic levels calculated over the available data.
+    \item \textbf{words\_that\_matter}: A list of up to 100 important words associated with the topic, extracted from the \texttt{Word2TFIDF} static variable.
+    \item \textbf{conflict\_awards} and \textbf{polemic\_awards}: Awards categorized by conflict and polemic data, such as \textit{Top 1000 of All Time} or \textit{First Place of the Year}.
+    \item \textbf{social\_jumps}: A list of significant socially connected topics, with each entry including a title and a link to a related Negapedia article.
+\end{itemize}
+
+\textbf{Code Snippet:}
+\begin{lstlisting}[language=Python, caption={NegapediaPageInfo Schema}, label={lst:negapediapageinfo}]
+class NegapediaPageInfo(TypedDict):
+    title: Optional[str]
+    description: Optional[str]
+    message: Optional[str]
+    compact_message: Optional[str]
+    historical_conflict: List[ImageInfo]
+    historical_polemic: List[ImageInfo]
+    historical_conflict_comparison: Optional[List[ImageInfo]]
+    historical_polemic_comparison: Optional[List[ImageInfo]]
+    recent_conflict_levels: Optional[str]
+    recent_polemic_levels: Optional[str]
+    mean_conflict_level: Optional[str]
+    mean_polemic_level: Optional[str]
+    words_that_matter: List[str]
+    conflict_awards: Dict[str, List[str]]
+    polemic_awards: Dict[str, List[str]]
+    social_jumps: List[Dict[str, str]]
+\end{lstlisting}
+
+\subsection{ImageInfo Schema}
+\label{subsec:imageinfo_schema}
+The \texttt{ImageInfo} schema is a supporting schema used within \texttt{PageInfo} and \texttt{NegapediaPageInfo}. It structures information about images, including their dimensions and alt text.
+
+\textbf{Key Fields in the \texttt{ImageInfo} Schema:}
+\begin{itemize}
+    \item \textbf{image}: Contains the address of the image. This is typically extracted from metadata tags like \texttt{og:image} on web pages or is dynamically generated during visualization in the Negapedia module.
+    \item \textbf{image\_width} and \textbf{image\_height}: Represent the dimensions of the image in pixels, often sourced from \texttt{og:image:width} and \texttt{og:image:height} metadata when available.
+    \item \textbf{image\_alt}: Stores the alternate text or description of the image, which is either provided by the page metadata (\texttt{og:image:alt}) or generated based on context.
+    \item \textbf{location}: Indicates the source location of the image, such as \texttt{"web"} for online images or \texttt{"local"} for dynamically created files.
+\end{itemize}
+
+\textbf{Code Snippet:}
+\begin{lstlisting}[language=Python, caption={ImageInfo Schema}, label={lst:imageinfo}]
+class ImageInfo(TypedDict):
+    image: Optional[str]
+    image_width: Optional[int]
+    image_height: Optional[int]
+    image_alt: Optional[str]
+    location: Optional[str]
+\end{lstlisting}
+
+These schemas work in harmony to handle diverse data sources. The \texttt{PageInfo} schema structures metadata from general websites, while \texttt{NegapediaPageInfo} extends this capability for Negapedia-specific content. The \texttt{ImageInfo} schema ensures consistent handling of image metadata across both. Together, they enable \textbf{SMKIT} to manage data efficiently and generate high-quality content for social media and web platforms.
+
 
 \section{Core Modules Implementation}
 \label{sec:core_modules_implementation}
