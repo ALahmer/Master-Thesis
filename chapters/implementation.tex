@@ -275,19 +275,107 @@ These schemas work in harmony to handle diverse data sources. The \texttt{PageIn
 
 \section{Core Modules Implementation}
 \label{sec:core_modules_implementation}
-This section breaks down the implementation of the core modules in \textbf{SMKIT}. Each module is discussed in detail, including its responsibilities and how it contributes to the overall functionality of the system.
+This section describes the implementation of the core modules in \textbf{SMKIT}. It highlights the modular design and the inheritance relationship between the modules. Specifically, the \textbf{Generic Module} and \textbf{Negapedia Module} extend the \textbf{Base Module}, inheriting its functionality while implementing their specialized behavior.
 
 \subsection{Base Module}
 \label{subsec:base_module}
-The \textbf{Base Module} provides common functionality shared across all other modules in \textbf{SMKIT}. It includes initialization logic, error handling, logging, and other utilities necessary for the operation of the system.
+The \textbf{Base Module} is an abstract class that defines the foundational methods and functionality shared by all modules. It employs the \texttt{ABC} module from Python to define abstract methods that must be implemented by derived classes.
+
+\textbf{Methods in the Base Module:}
+\begin{itemize}
+    \item \textbf{Abstract Methods:}
+    \begin{itemize}
+        \item \texttt{handle\_module()}: Processes the input arguments and defines the core logic for the module.
+        \item \texttt{process\_pages()}: Manages the entire workflow of processing the provided pages.
+        \item \texttt{extract\_pages\_info()}: Extracts relevant information from the given URLs.
+    \end{itemize}
+    \item \textbf{Static Methods:}
+    \begin{itemize}
+        \item \texttt{fetch\_page\_content()}: Fetches the HTML content of a web page.
+    \end{itemize}
+    \item \textbf{Implemented Methods:}
+    \begin{itemize}
+        \item \texttt{generate\_posts()}: Generates posts for the specified platforms.
+    \end{itemize}
+\end{itemize}
+
+\textbf{Code Snippet:}
+\begin{lstlisting}[language=Python, caption={Base Module}, label={lst:base_module}]
+class BaseModule(ABC):
+    @abstractmethod
+    def handle_module(self, args: Any) -> None:
+        pass
+    
+    @abstractmethod
+    def process_pages(self, urls: List[str], post_type: List[str], mode: str, remove_suffix: Optional[bool], base_directory: Optional[str], base_url: Optional[str], minimum_article_modified_date: Optional[str], message: Optional[str]) -> None:
+        pass
+    
+    @abstractmethod
+    def extract_pages_info(self, urls: List[str], message: Optional[str], mode: str) -> Union[PageInfo, List[NegapediaPageInfo]]:
+        pass
+    
+    @staticmethod
+    def fetch_page_content(url: str) -> Optional[str]:
+        pass
+
+    def generate_posts(self, post_info: Union[PageInfo, List[NegapediaPageInfo]], post_type: List[str], mode: str) -> None:
+        pass
+\end{lstlisting}
 
 \subsection{Generic Module}
 \label{subsec:generic_module}
-The \textbf{Generic Module} is responsible for processing web pages and extracting metadata (e.g., using \textbf{Open Graph} tags). This module can work with any website that implements \textbf{Open Graph} tags or similar structured data formats. It handles data extraction, transformation, and posting to social media platforms.
+The \textbf{Generic Module} extends the \textbf{Base Module} and specializes in handling general websites. It works with pages that use metadata formats like \textbf{Open Graph}.
+
+\textbf{Methods in the Generic Module:}
+\begin{itemize}
+    \item \textbf{Implemented Methods:}
+    \begin{itemize}
+        \item \texttt{handle\_module()}: Processes the input arguments and executes the module's logic.
+        \item \texttt{process\_pages()}: Manages the entire workflow of processing the provided pages.
+        \item \texttt{extract\_pages\_info()}: Extracts relevant information, like title, description, and images, from the given URLs.
+    \end{itemize}
+\end{itemize}
+
+\textbf{Code Snippet:}
+\begin{lstlisting}[language=Python, caption={Generic Module}, label={lst:generic_module}]
+class GenericModule(BaseModule):
+    def handle_module(self, args: Any) -> None:
+        pass
+    
+    def process_pages(self, urls: List[str], post_type: List[str], mode: str, remove_suffix: Optional[bool], base_directory: Optional[str], base_url: Optional[str], minimum_article_modified_date: Optional[str], message: Optional[str]) -> None:
+        pass
+    
+    def extract_pages_info(self, urls: List[str], message: Optional[str], mode: str) -> PageInfo:
+        pass
+\end{lstlisting}
 
 \subsection{Negapedia Module}
 \label{subsec:negapedia_module}
-The \textbf{Negapedia Module} is designed specifically to handle data from Negapedia. This section explains how the \texttt{NegapediaPageInfo} schema is used to structure and process Negapedia-specific data (e.g., conflict, polemic, social interaction metrics). The module processes this data and formats it for social media posting.
+The \textbf{Negapedia Module} extends the \textbf{Base Module} and is designed specifically to handle content from \textbf{Negapedia}. It implements specialized logic for processing conflict and polemic metrics, as well as generating visual and textual summaries.
+
+\textbf{Methods in the Negapedia Module:}
+\begin{itemize}
+    \item \textbf{Implemented Methods:}
+    \begin{itemize}
+        \item \texttt{handle\_module()}: Processes the input arguments and executes the module's logic.
+        \item \texttt{process\_pages()}: Processes the input arguments and executes the module's logic.
+        \item \texttt{extract\_pages\_info()}: Extracts Negapedia-specific, data such as conflict metrics and awards, from the given URLs..
+    \end{itemize}
+\end{itemize}
+
+\textbf{Code Snippet:}
+\begin{lstlisting}[language=Python, caption={Negapedia Module}, label={lst:negapedia_module}]
+class NegapediaModule(BaseModule):
+    def handle_module(self, args: Any) -> None:
+        pass
+    
+    def process_pages(self, urls: List[str], post_type: List[str], mode: str, remove_suffix: Optional[bool], base_directory: Optional[str], base_url: Optional[str], minimum_article_modified_date: Optional[str], message: Optional[str]) -> None:
+        pass
+    
+    def extract_pages_info(self, urls: List[str], message: Optional[str], mode: str) -> List[NegapediaPageInfo]:
+        pass
+\end{lstlisting}
+
 
 \section{Social Media Integration}
 \label{sec:social_media_integration}
