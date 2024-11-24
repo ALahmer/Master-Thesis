@@ -23,30 +23,26 @@ The following objectives have been successfully achieved by \textbf{SMKIT}:
 In summary, \textbf{SMKIT} has successfully met the key objectives, demonstrating robust functionality in terms of metadata extraction, content generation for multiple platforms, and seamless integration with social media APIs.
 
 
-\section{Requirements Not Satisfied}
-\label{sec:requirements_not_satisfied}
-This section identifies any aspects of the project that did not meet expectations or where the \textbf{SMKIT} did not fully satisfy the original requirements:
+\section{Improvement Areas}
+\label{sec:improvement_areas}
+This section identifies aspects of the \textbf{SMKIT} project that require improvement in order to create a more complete and efficient system. While \textbf{SMKIT} performs well in many areas, there are still challenges and limitations that need to be addressed. The following points highlight these areas for improvement:
 \begin{itemize}
-    \item \textbf{Platform Limitations}: Issues with integration or limitations on certain social media platforms.
-    \item \textbf{Incomplete Metadata}: Challenges with extracting specific metadata or handling incomplete data.
-    \item \textbf{Formatting Issues}: Problems with platform-specific formatting or content layout.
+    \item \textbf{Platform Limitations}:
+    Despite seamless integration with Facebook and Twitter, there were some limitations in specific platform functionalities, particularly with Twitter's occasional API post content check restrictions, which led to error response codes. Additionally, the system is currently only integrated with Facebook and Twitter, with no support for other popular platforms such as Instagram or LinkedIn. Expanding to these platforms could broaden the tool's reach and support a wider range of social media users.
+
+    \item \textbf{Incomplete Metadata}:
+    While \textbf{SMKIT} is successful in extracting the basic Open Graph metadata, such as title, description, and image, challenges remain in handling the full range of Open Graph tags. Currently, the system only extracts the basic tags required by the stakeholders. A potential improvement would be to expand the system's capabilities to handle all possible Open Graph tags, which would provide more comprehensive metadata for social media posts.
+
+    \item \textbf{CLI Usability Improvement}: 
+    The current command-line interface (CLI) is functional but not optimal for user experience. It requires technical knowledge to operate, making it challenging for less technically-inclined users. A significant improvement would be to develop a \textbf{Graphical User Interface (GUI)} to make the tool more user-friendly and accessible to a broader audience. This change would enhance the usability and overall experience of the system.
+
+    \item \textbf{Social Post Metrics Calculation}: 
+    Currently, \textbf{SMKIT} does not include functionality for calculating metrics related to social media posts, such as click-through rates, or engagement levels. Adding this functionality would provide valuable insights into the performance of posts, helping users evaluate the effectiveness of their content. This feature would significantly enhance the system's capabilities by allowing users to track and analyze the impact of their social media activity.
+    
+    \item \textbf{Error Handling Optimization}: There are opportunities to improve the system’s error handling. Currently, some error messages are not very informative, making it challenging to troubleshoot issues for less technically-inclined users. Enhancing the error handling system to provide more detailed and user-friendly error messages would improve the user experience.
 \end{itemize}
 
-
-\section{Limitations, Future Work, and Improvements}
-\label{sec:limitations_future_work_improvements}
-This section discusses the limitations of the current implementation and outlines potential future improvements:
-\begin{itemize}
-    \item \textbf{Limitations}: The CLI-based interface is not optimal for user experience; it’s harder for less technical users to interact with the tool.
-    \item \textbf{Future Work}: 
-    \begin{itemize}
-        \item Adding functionality for calculating social post metrics (e.g., click-through rates, engagement).
-        \item Implementing a \textbf{Graphical User Interface (GUI)} to improve the user experience.
-        \item Expanding integration with additional social media platforms.
-        \item Enhancing metadata extraction accuracy for more complex websites.
-    \end{itemize}
-    \item \textbf{Improvements}: Improving error handling, optimizing performance, and adding more customization options for posts.
-\end{itemize}
+In summary, while \textbf{SMKIT} performs well in many areas, there are still opportunities for improvement, particularly in platform integration, metadata extraction, and functionality expansion. Addressing these challenges—such as expanding platform support beyond Facebook and Twitter—will be essential for increasing the tool's reach and making it a more complete and efficient system in future versions.
 
 
 \section{Social Media Post Examples and Web Pages}
