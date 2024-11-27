@@ -2,5 +2,30 @@
 
 \chapter{Conclusion}
 \label{chp:conclusion}
+In this thesis, we developed the \textbf{Social Media Kit (SMKIT)}, a modular framework designed to automate the extraction, analysis, and posting of web content across multiple social media platforms. The SMKIT leverages modern web content analysis techniques to efficiently gather structured data from diverse web sources, such as Open Graph (OG) tags. It supports multiple input types, including both online web pages and local file systems, offering flexibility for various deployment scenarios. Moreover, the framework is designed to be extensible, enabling the creation of specialized modules tailored to the specific requirements of different websites.
 
-Conclusion.
+The main objective of the SMKIT was to simplify and automate the process of creating and sharing content on social media platforms like Twitter and Facebook. The framework was designed with the following key goals:
+
+\begin{itemize}
+    \item \textbf{Automated Metadata Extraction}: The SMKIT automatically extracts relevant metadata from web pages, including Open Graph tags such as \texttt{og:title}, \texttt{og:description}, and \texttt{og:image}. This metadata is used to generate well-structured and formatted social media posts.
+    \item \textbf{Modular Design}: The SMKIT's architecture is modular, allowing for the addition of new modules tailored to specific websites. This ensures the flexibility of the framework to handle varying website structures and requirements.
+    \item \textbf{Support for Multiple Platforms}: The framework supports posting content to various social media platforms, such as Facebook and Twitter. This multi-platform capability increases the versatility and reach of the tool.
+    \item \textbf{Local and Online Content Processing}: The SMKIT is capable of processing both web URLs and local files, offering users the option to work with content from online sources or local repositories, such as compressed HTML files.
+    \item \textbf{Extensibility and Customization}: The framework's modular approach allows users to customize the behavior and appearance of posts through template management, schema customization, and social media integrations.
+\end{itemize}
+
+The methodology employed in developing the SMKIT involved leveraging existing technologies for web content analysis, data extraction, and social media integration. The system architecture was designed to accommodate a wide range of use cases, from simple content extraction to complex, customized post generation. A combination of Python libraries and web scraping techniques have been utilized to extract metadata from web pages and process them efficiently. Additionally, the SMKIT supports various post formats, ensuring that posts are well-suited to each social media platform's requirements.
+
+The implementation of the SMKIT was carried out by developing several core components, including social media integration connectors and the CLI for interacting with the system. The system was also designed to support multiple websites through specialized modules, such as the \textbf{Negapedia} module, which allows users to analyze and summarize content from specific websites based on their structure and data.
+
+In terms of results, the SMKIT successfully met the core objectives, the system effectively extracts metadata from web pages, and its social media posting functionality has been tested and validated for Facebook and Twitter. Furthermore, the flexibility of the system in handling both online and local content sources has been demonstrated through practical use cases. The ability to extend the SMKIT with new modules and templates ensures that it can evolve and adapt to meet future needs.
+
+However, while the SMKIT has proven to be a robust and effective tool for automating social media content management, there are several areas where future work could improve its functionality:
+
+\begin{itemize}
+    \item \textbf{Expanded Platform Support}: Currently, the SMKIT supports Facebook and Twitter, but it could be expanded to include additional platforms such as Instagram, LinkedIn, and others, increasing its versatility.
+    \item \textbf{User Interface (UI)}: Although the system is primarily designed for use via the command-line interface (CLI), a graphical user interface (GUI) could be developed to make the tool more accessible to non-technical users.
+    \item \textbf{Advanced Analytics and Reporting}: Future versions of the SMKIT could include features for tracking the performance of social media posts, providing users with valuable insights into engagement and reach.
+\end{itemize}
+
+In conclusion, the SMKIT represents a significant step forward in automating the process of managing and sharing content on social media platforms. Its modular architecture, support for multiple content sources, and extensibility make it a valuable tool for users looking to automate their social media workflows. With further development, the SMKIT has the potential to become an even more powerful tool, capable of handling a wider range of use cases and platforms. As mentioned, there are several areas for potential improvement, such as the support for more social media platforms, and the addition of a user-friendly interface. These areas present exciting opportunities for extending the capabilities of the SMKIT in future versions.
