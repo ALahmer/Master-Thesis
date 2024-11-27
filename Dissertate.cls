@@ -251,12 +251,12 @@
 	\cleardoublepage
 
 	% table listing - required if you have any tables
-	\phantomsection
-	\addcontentsline{toc}{chapter}{List of tables}
-	\listoftables
-	\cleardoublepage
+	% \phantomsection
+	% \addcontentsline{toc}{chapter}{List of tables}
+	% \listoftables
+	% \cleardoublepage
 
-	\acronyms
+	% \acronyms
 
 	\cleardoublepage
 	\setcounter{page}{1}
