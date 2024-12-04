@@ -186,7 +186,7 @@ The \texttt{PageInfo} schema is used for processing general websites, particular
     \item \textbf{images}: A list containing information page images, this field will be filled by the primary image of the page, extracted from the \texttt{og:image} meta tag.
     \item \textbf{audio} and \textbf{video}: Links to audio and video content on the page, extracted from the \texttt{og:audio} and \texttt{og:video} meta tags, respectively.
     \item \textbf{urls}: The canonical URL of the page, extracted from the \texttt{og:url} meta tag. If unavailable, the input URL is used.
-    \item \textbf{updated\_time}: The timestamp of the last update to the page, extracted from the \texttt{og:updated\_time} meta tag.
+    \item \textbf{updated\_time}: The timestamp of the last update to the page, extracted from meta tag with property  \texttt{og:updated\_time}.
     \item \textbf{article\_published\_time} and \textbf{article\_modified\_time}: The publication and modification timestamps of the page, extracted from the \texttt{article:published\_time} together with \texttt{article:modified\_time} meta tags, respectively.
     \item \textbf{article\_tag}: Tag categorizing the article, extracted from the \texttt{article:tag} meta tag.
     \item \textbf{keywords}: Keywords describing the page, extracted from the \texttt{name="Keywords"} meta tag.
@@ -431,7 +431,7 @@ This functionality provides an alternative method of content distribution by ena
 
 \subsection{Error Handling and Reliability}
 \label{subsec:error_handling_reliability}
-All connectors implement logging and basic error-handling mechanisms to address common issues such as authentication failures, expired tokens, and missing data. The Facebook Connector includes a fallback mechanism for refreshing tokens, while other connectors rely on logging and error reporting. Handling of API rate limits and graceful degradation is limited, emphasizing the need for further enhancements to ensure robust integration across all supported platforms.
+All connectors implement logging \cite{logging_module_documentation} and basic error-handling mechanisms to address common issues such as authentication failures, expired tokens, and missing data. The Facebook Connector includes a fallback mechanism for refreshing tokens, while other connectors rely on logging and error reporting. Handling of API rate limits and graceful degradation is limited, emphasizing the need for further enhancements to ensure robust integration across all supported platforms.
 
 
 \section{Template Management and Customization}
@@ -509,7 +509,7 @@ The \textbf{input\_validation\_management} module ensures that user-provided inp
 \label{subsec:image_management}
 The \textbf{image\_management} module handles image retrieval and preparation for posting on social media platforms. It ensures images comply with platform-specific requirements. The module’s functionalities include:
 \begin{itemize}
-    \item \textbf{Image Downloading}: Fetches images from provided URLs using the \texttt{fetch\_image\_as\_stream} function.
+    \item \textbf{Image Downloading}: Fetches images from provided URLs using the function named \texttt{fetch\_image\_as\_stream}.
     \item \textbf{Format Adaptation}: Adjusts images formats for compatibility with platform constraints.
     \item \textbf{Temporary Storage}: Saves processed images in a designated directory for easy retrieval and posting.
 \end{itemize}
@@ -554,7 +554,7 @@ Key aspects of the implementation are summarized below:
     \item \textbf{Template Management and Customization:} Dynamic templates tailored for \textbf{Facebook}, \textbf{Twitter}, and web pages were implemented to ensure consistent and platform-optimized content generation. The use of placeholders and schema-based data insertion facilitates high flexibility and adaptability.
     \item \textbf{Social Media Integration:} The connectors for \textbf{Facebook} and \textbf{Twitter} automate the posting process, addressing platform-specific requirements and enabling error-handling mechanisms for reliability.
     \item \textbf{Web Connector Functionality:} The system extends beyond social media by generating HTML web pages, offering alternative distribution methods and the ability to integrate web pages into user websites for enhanced discoverability.
-    \item \textbf{Utility and Support Modules:} Supporting modules like \textbf{input\_validation\_management}, \textbf{env\_management}, \textbf{image\_management} and \textbf{logger\_management} streamline operations and ensure the robustness of the system. Specialized utilities, such as the \textbf{plot\_colors\_management} and \textbf{translation\_management} modules, enable consistent visualizations and multilingual support.
+    \item \textbf{Utility and Support Modules:} Supporting modules such as \textbf{image\_management}, \textbf{input\_validation\_management}, \textbf{env\_management} and \textbf{logger\_management} streamline operations and ensure the robustness of the system. Specialized utilities, such as the \textbf{plot\_colors\_management} and \textbf{translation\_management} modules, enable consistent visualizations and multilingual support.
 \end{itemize}
 
 The implementation faced challenges related to API integration, template management, and platform-specific constraints. These challenges were addressed through careful design choices, comprehensive error-handling mechanisms, and modular utilities, ensuring the system's functionality and dependability.
