@@ -1,0 +1,58 @@
+\documentclass{beamer}
+
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[english]{babel}
+\usepackage{lmodern}
+
+% Use Unipd as theme, with options:
+% - pageofpages: define the separation symbol of the footer page of pages (e.g.: of, di, /, default: of)
+% - logo: position another logo near the Unipd logo in the title page (e.g. department logo), passing the second logo path as option 
+% Use the environment lastframe to add the endframe text
+\usetheme[pageofpages=of]{Unipd}
+
+\title{ \textbf{ \textit{SMKIT} } }
+\subtitle{ \textbf{ \textit{Design and development of a social media kit} } }
+\author[ \textbf{ \textit{Abdelilah Lahmer} } ]{ \textbf{ \textit{Lahmer Abdelilah} } }
+
+\date{ \textbf{ \textit{December 12, 2024} } }
+
+% The next block of commands puts the table of contents at the beginning of each section and highlights the current section
+\AtBeginSection[]
+{
+  \begin{frame}
+    \frametitle{Table of Contents}
+    \tableofcontents[currentsection]
+  \end{frame}
+}
+
+
+
+\begin{document}
+
+% Make the title page
+\frame{\titlepage}
+
+% Insert the general toc
+\begin{frame}{Table of Contents}
+    \tableofcontents    
+\end{frame}
+
+\section{What is SMKIT?}
+    \begin{frame}{What is SMKIT?}
+        In this slide, we gonna explain what SMKIT it!
+    \end{frame}
+
+
+\section{SMKIT in details}
+    \begin{frame}{SMKIT in details}
+        SMKIT in details!
+    \end{frame}
+
+\begin{emptyframe}
+     \textbf{ \textit{Thank you!} }
+\end{emptyframe}
+
+\appendix
+    
+\end{document}
