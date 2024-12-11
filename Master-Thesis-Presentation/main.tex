@@ -264,51 +264,6 @@
         \end{block}
     \end{frame}
 
-    \iffalse
-    \begin{frame}{Input Handling}
-        \textbf{Accepted Input Types}
-            SMKIT is designed to handle two main types of input:
-            \begin{itemize}
-                \item \textbf{Web Pages:}
-                    \begin{itemize}
-                        \item Processes URLs directly to extract metadata from online content.
-                    \end{itemize}
-                \item \textbf{Local Paths:}
-                    \begin{itemize}
-                        \item Supports file paths for locally stored web pages.
-                        \item Compatible with compressed formats like `.html.gz`.
-                    \end{itemize}
-            \end{itemize}
-        \begin{exampleblock}{Example}
-            A local file at `/var/www/page.html.gz` can be combined with a base URL like `http://example.com/` to reconstruct the full URL as `http://example.com/page.html`.
-        \end{exampleblock}            
-    \end{frame}
-    \fi
-
-    \iffalse
-    \begin{frame}{Metadata Extraction}
-        \begin{block}{Generic Module}
-            Handles Open Graph metadata extraction:
-            \begin{itemize}
-                \item Extracts tags such as `og:title`, `og:description`, `og:image`.
-                \item Implements fallback mechanisms:
-                    \begin{itemize}
-                        \item `og:title` → Page `<title>`.
-                        \item `og:description` → Page `description` meta tag.
-                    \end{itemize}
-            \end{itemize}
-        \end{block}
- 
-        \begin{block}{Negapedia Module}
-            Specialized data extraction for Negapedia content:
-            \begin{itemize}
-                \item Processes unique metrics like conflict levels and polemic trend.
-                \item Extracts awards, rankings, and social jumps from Negapedia-specific static variables.
-            \end{itemize}
-        \end{block}
-    \end{frame}
-    \fi
-
     \begin{frame}{Posting Process}
         \begin{block}{Integration with APIs}
             SMKIT integrates seamlessly with social platform APIs for automated posting:
