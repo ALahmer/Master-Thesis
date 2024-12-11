@@ -183,7 +183,7 @@
         \begin{itemize}
             \item \textbf{Metadata Extraction:}
                 \begin{itemize}
-                    \item Supports Open Graph tags (e.g., title, description, image).
+                    \item Supports Open Graph tags (e.g., og:title, og:description, og:image).
                     \item Handles specific data structures for Negapedia platform.
                 \end{itemize}
             \vspace{0.3cm}
@@ -208,30 +208,82 @@
 
 
 \section{Technical Implementation}
-    \begin{frame}{Core Components}
-        \begin{itemize}
-            \item Generic module for Open Graph metadata handling.
-            \item Specialized Negapedia module.
-        \end{itemize}
+    \begin{frame}{Core Modules}
+        \begin{block}{Generic Module}
+            Extracts and processes Open Graph metadata from web pages. This module:
+            \begin{itemize}
+                \item Handles standard metadata tags (e.g., og:title, og:description, og:image).
+                \item Implements fallback mechanisms for missing or non-standard metadata.
+            \end{itemize}
+        \end{block}
+
+        \begin{block}{Negapedia Module}
+            Specialized for the Negapedia platform.
+            This module:
+            \begin{itemize}
+                \item Extracts structured data such as historical conflict and polemic metrics, awards, and rankings.
+                \item Processes content using Negapedia-specific rules and formats.
+            \end{itemize}
+        \end{block}
     \end{frame}
 
+    \begin{frame}{Input Handling}
+        \textbf{Accepted Input Types}
+            SMKIT is designed to handle two main types of input:
+            \begin{itemize}
+                \item \textbf{Web Pages:}
+                    \begin{itemize}
+                        \item Processes URLs directly to extract metadata from online content.
+                    \end{itemize}
+                \item \textbf{Local Paths:}
+                    \begin{itemize}
+                        \item Supports file paths for locally stored web pages.
+                        \item Compatible with compressed formats like `.html.gz`.
+                    \end{itemize}
+            \end{itemize}
+        \begin{exampleblock}{Example}
+            A local file at `/var/www/page.html.gz` can be combined with a base URL like `http://example.com/` to reconstruct the full URL as `http://example.com/page.html`.
+        \end{exampleblock}            
+    \end{frame}    
+
     \begin{frame}{Metadata Extraction}
-        \begin{itemize}
-            \item Discuss Open Graph tag analysis and fallback mechanisms.
-        \end{itemize}
+        \begin{block}{Generic Module}
+            Handles Open Graph metadata extraction:
+            \begin{itemize}
+                \item Extracts tags such as `og:title`, `og:description`, `og:image`.
+                \item Implements fallback mechanisms:
+                    \begin{itemize}
+                        \item `og:title` → Page `<title>`.
+                        \item `og:description` → Page `description` meta tag.
+                    \end{itemize}
+            \end{itemize}
+        \end{block}
+ 
+        \begin{block}{Negapedia Module}
+            Specialized data extraction for Negapedia content:
+            \begin{itemize}
+                \item Processes unique metrics like conflict levels and polemic trend.
+                \item Extracts awards, rankings, and social jumps from Negapedia-specific static variables.
+            \end{itemize}
+        \end{block}
     \end{frame}
 
     \begin{frame}{Posting Process}
-        \begin{itemize}
-            \item Explain integration with social platforms APIs (Facebook, Twitter).
-            \item Template usage for consistent identity.
-        \end{itemize}
-    \end{frame}
-
-    \begin{frame}{Challenges}
-        \begin{itemize}
-            \item Discuss key technical challenges and solutions (e.g., handling metadata variability, scaling for multiple platforms).
-        \end{itemize}
+        \begin{block}{Integration with APIs}
+            SMKIT integrates seamlessly with social platform APIs for automated posting:
+            \begin{itemize}
+                \item \textbf{Facebook API}: Posts content with metadata, images, and descriptions using \textbf{facebook-sdk} for Python.
+                \item \textbf{Twitter API}: Publishes concise posts with links, images, and hashtags using \textbf{tweepy} library  for Python.
+            \end{itemize}
+        \end{block}
+    
+        \begin{block}{Template Usage}
+            Consistent branding and identity are achieved through customizable templates:
+            \begin{itemize}
+                \item Uniformity across platforms is achieved thanks to templates.
+                \item Supports platform-specific adaptations and restrictions.
+            \end{itemize}
+        \end{block}
     \end{frame}
 
 
