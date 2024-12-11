@@ -117,6 +117,43 @@
     \end{frame}
 
 
+\section{Preliminaries}
+    \begin{frame}{What's Open Graph Protocol?}
+        \begin{block}{What is Open Graph Protocol?}
+        \begin{itemize}
+            \item A protocol designed to make web pages more social-media friendly.
+            \item Developed by Facebook to provide metadata for rich media previews.
+        \end{itemize}
+        \end{block}
+
+        \begin{exampleblock}{Open Graph Examples}
+            \begin{itemize}
+                \item \textbf{og:title:} The title of the page.
+                \item \textbf{og:description:} A short description of the page.
+                \item \textbf{og:image:} The main image to represent the page.
+                \item \textbf{og:url:} The canonical URL of the page.
+            \end{itemize}
+        \end{exampleblock}
+    \end{frame}
+
+    \begin{frame}{What is Negapedia?}
+        \begin{block}{Overview}
+            \begin{itemize}
+                \item Negapedia is a unique platform that tracks and visualizes conflicts and controversies on Wikipedia.
+                \item It provides insights into both historical and recent conflict/polemic trends across various topics.
+            \end{itemize}
+        \end{block}
+
+        \begin{exampleblock}{Key Features of Negapedia}
+            \begin{itemize}
+                \item \textbf{Conflict Levels:} Measures the size of disputes and negative interactions within a Wikipedia page.
+                \item \textbf{Polemic Levels:} Evaluates the emotional tone and hostility within community discussions about a topic.
+                \item \textbf{Awards and Rankings:} Highlights the most polemic or debated topics.
+            \end{itemize}
+        \end{exampleblock}
+    \end{frame}
+
+
 \section{Problem Statement}
     \begin{frame}{Problem Statement}
         \begin{block}{Challenge}
@@ -303,7 +340,7 @@
                 \item \textbf{comparison:}
                     Compares data across two Negapedia pages, showcasing differences in:
                     \begin{itemize}
-                        \item Conflict or anger metrics.
+                        \item Conflict or polemic metrics.
                         \item Social jumps or awards.
                     \end{itemize}
                 \item \textbf{ranking:}
@@ -344,7 +381,7 @@
             \begin{itemize}
                 \item \textbf{Modular Framework:}
                     \begin{itemize}
-                        \item Provides a generic module for handling Open Graph metadata.
+                        \item Provides a Generic Module for handling Open Graph metadata.
                         \item Includes a specialized Negapedia module tailored to process unique data metrics.
                     \end{itemize}
                 \item \textbf{Cross-Platform Automation:}
