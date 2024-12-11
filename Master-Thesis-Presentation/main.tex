@@ -49,7 +49,7 @@
         \end{itemize}
 
         \begin{center}
-            \includegraphics[width=\textwidth, keepaspectratio]{images/introduction_and_motivation_introduction_to_smkit_slide_image.png}
+            \includegraphics[width=\textwidth, keepaspectratio]{images/introduction_introduction_to_smkit_slide_image.png}
         \end{center}
     \end{frame}
 
@@ -58,7 +58,7 @@
             \column{0.25\textwidth}
             \vspace{-0.25cm}
             \begin{center}
-                \includegraphics[width=1.35\textwidth, keepaspectratio]{images/introduction_and_motivation_background_slide_image.jpeg}
+                \includegraphics[width=1.35\textwidth, keepaspectratio]{images/introduction_background_slide_image.jpeg}
             \end{center}
 
             \column{0.75\textwidth}
@@ -91,7 +91,7 @@
             \hspace{-0.5cm}
             \vspace{0.2cm}
             \begin{center}
-                \includegraphics[width=1.63\textwidth, keepaspectratio]{images/introduction_and_motivation_motivation_slide_image.png}
+                \includegraphics[width=1.63\textwidth, keepaspectratio]{images/introduction_motivation_slide_image.png}
             \end{center}
 
             \column{0.73\textwidth}
@@ -163,24 +163,46 @@
 
 
 \section{Overview of SMKIT}
-    \begin{frame}{High-Level Architecture}
-        \begin{itemize}
-            \item Show a diagram of SMKIT’s modular structure.
-            \item Highlight generic and specialized modules.
-        \end{itemize}
-    \end{frame}
-
     \begin{frame}{Workflow}
         \begin{itemize}
-            \item Illustrate the process: input (web pages) → analysis (metadata extraction) → output (social media/web posts).
+            \item \textbf{Workflow Overview:}
+                SMKIT operates in a modular structure with two main ones:
+                \begin{itemize}
+                    \item \textbf{Generic Module:} Handles Open Graph metadata extraction for diverse web pages.
+                    \item \textbf{Negapedia Module:} Processes specific data tailored to the \href{http://www.negapedia.org/}{negapedia.org} platform.
+                \end{itemize}
+            \item Both modules feed into posting connectors for publishing on channels like Facebook, Twitter, or for creating websites.
         \end{itemize}
+
+        \begin{center}
+            \includegraphics[width=0.85\textwidth, keepaspectratio]{images/overview_on_smkit_workflow_slide_image.png}
+        \end{center}
     \end{frame}
 
     \begin{frame}{Features}
         \begin{itemize}
-            \item Metadata extraction (Open Graph tags, etc.).
-            \item Multi-platform content posting (Twitter, Facebook, web).
-            \item Customizable templates.
+            \item \textbf{Metadata Extraction:}
+                \begin{itemize}
+                    \item Supports Open Graph tags (e.g., title, description, image).
+                    \item Handles specific data structures for Negapedia platform.
+                \end{itemize}
+            \vspace{0.3cm}
+            \item \textbf{Multi-Channel Posting:}
+                \begin{itemize}
+                    \item Supports posting to Facebook, Twitter, and Web channels.
+                    \item Ensures channel-specific formatting and requirements.
+                \end{itemize}
+            \vspace{0.3cm}
+            \item \textbf{Customizable Templates:}
+                \begin{itemize}
+                    \item Provides flexible templates for consistent branding across posts.
+                \end{itemize}
+            \vspace{0.3cm}
+            \item \textbf{Modular Design:}
+                \begin{itemize}
+                    \item Allows seamless integration of new modules for additional functionality.
+                    \item Scalable to accommodate new platforms and content types.
+                \end{itemize}
         \end{itemize}
     \end{frame}
 

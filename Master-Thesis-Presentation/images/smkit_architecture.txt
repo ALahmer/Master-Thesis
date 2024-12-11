@@ -1,0 +1,13 @@
+                                  smkit.py
+                                  /      \
+                                 /        \
+                   Generic Module          Negapedia Module
+                          /                       \
+                         /                         \
+                Data Extraction               Data Extraction
+             (Open Graph Metadata)            (Specific Data)
+                        \                            /
+                         \                          /
+                          \                        /
+                              Posting Connectors
+                           (Facebook, Twitter, Web)
